@@ -1,2 +1,2 @@
 # dCareProject
-2017 SMIT02-Final
+2017 SMIT02-Final Project
