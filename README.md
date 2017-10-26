@@ -1,2 +1,3 @@
 # dCareProject
-2017 SMIT02-Final Project
+
+2017 智慧城鄉競賽及資策會SMIT02結訓 專題製作
