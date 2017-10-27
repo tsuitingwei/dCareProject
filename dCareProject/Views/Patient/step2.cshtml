@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+
+    <style type="text/css">
+        .container {
+            /*border: 1px solid Gray;*/
+        }
+
+        .main {
+            height: 600px;
+        }
+
+
+
+
+        .radio {
+            font-size: 30px;
+        }
+    </style>
+    
+
+</head>
+<body style="font-family:微軟正黑體">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="stepper" data-role="stepper" data-steps="3" data-start="2">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <p style="text-align:left;font-size:26px">健康量測</p>
+        </div>
+        <div class="col-md-4">
+            <p style="text-align:center;font-size:26px">配對或指定醫生</p>
+        </div>
+        <div class="col-md-4">
+            <p style="text-align:right;font-size:26px">完成</p>
+        </div>
+        <div class="col-md-12">
+            <div class="main">
+                <p id="test1" style="font-size:50px;text-align:center">選擇看診醫生</p><br>
+                <br><br>
+                <div class="row" style="text-align:center">
+                    <div class="col-md-6">
+                        <button class="button info button rounded" style="text-align:center;font-size:50px;height:300px;width:300px" id="btnAssign" href="step4.html"><a href="step3">指定醫生</a></button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="button info button rounded" style="text-align:center;font-size:50px;height:300px;width:300px" id="btnPair" href="step4.html"><a href="step4.html">配對</a></button>
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="text-align:center">
+                    <div class="col-md-6">
+
+                        <script>
+				    $(function(){
+				        $("#select").select2();
+				    });
+                        </script>
+                        <select id="select" style="font-size:40px;height:100px">
+                            <option>卓清澤 內科</option>
+                            <option>楊木環 內科</option>
+                            <option>馬爾內 內科</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+</body>
+</html>

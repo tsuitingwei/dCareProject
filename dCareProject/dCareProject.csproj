@@ -123,6 +123,11 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\patient\css\bootstrap.css" />
+    <Content Include="Content\patient\css\metro-icons.css" />
+    <Content Include="Content\patient\css\metro.css" />
+    <Content Include="Content\patient\css\metro.min.css" />
+    <Content Include="Content\patient\fonts\metro.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -130,11 +135,20 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="Content\patient\fonts\metro.eot" />
+    <Content Include="Content\patient\fonts\metro.ttf" />
+    <Content Include="Content\patient\fonts\metro.woff" />
+    <Content Include="Content\patient\fonts\selection.json" />
     <None Include="scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="scripts\jquery-3.2.1.js" />
     <Content Include="scripts\jquery-3.2.1.min.js" />
     <Content Include="scripts\jquery-3.2.1.slim.js" />
     <Content Include="scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="scripts\patient\js\jquery-ui.min.js" />
+    <Content Include="scripts\patient\js\jquery.js" />
+    <Content Include="scripts\patient\js\jquery.min.js" />
+    <Content Include="scripts\patient\js\metro.js" />
+    <Content Include="scripts\patient\js\select2.min.js" />
     <Content Include="web\dCareProject\doctor_pages\%28n%29-doctorlogin.html" />
     <Content Include="web\dCareProject\doctor_pages\%28n%29-driverindex.html" />
     <Content Include="web\dCareProject\doctor_pages\%28n%29-driverlogin.html" />
@@ -269,6 +283,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -288,6 +303,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="scripts\jquery-3.2.1.min.map" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Patient\step1.cshtml" />
+    <Content Include="Views\Patient\step2.cshtml" />
+    <Content Include="Views\Patient\step3.cshtml" />
+    <Content Include="Views\Patient\look.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
