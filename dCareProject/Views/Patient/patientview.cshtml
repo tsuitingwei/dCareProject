@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+
+
+
+<body style="font-family:微軟正黑體">
+
+    <div class="container">
+        <div sytle="clear:both">
+            <!-----------------------bat-->
+            <div class="app-bar red">
+                <a class="app-bar-element branding">dCare Patient</a>
+                <span class="app-bar-divider"></span>
+                <div class="app-bar-element place-right">
+                    <ul class="app-bar-menu">
+                        <li><a href="">登出</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--bar-end -->
+        <br/>
+        <p style="color:red"><h2>目前看診號碼 : 70號</h2></p>
+        
+        <div class="row" style="clear:both">
+            
+            <div class="col-7">
+                <h3>遠端畫面</h3>
+                    <div data-role="preloader" data-type="cycle" data-style="color" id="loading" style="width:480px;height:400px"></div>
+                    <iframe height="400" width="480" style="display:none" scrolling="no" id="frmVedio" src="http://10.2.1.203:8081"></iframe>
+            </div>
+
+            <div class="col-2">
+            </div>
+            <div class="rightbox col-3">
+                <div class="rightbox-top">
+                    <img src="img/lai.jpg" alt="" class="img-rounded">
+                    <h5>醫生資訊</h5>
+                    <h4>卓清澤  &nbsp&nbsp&nbsp&nbsp<span class="mif-user-md" style="color:green">上線中</span></h4>
+                    <hr>
+                    <dl>
+                      <dt>診所資料</dt>
+                      <dd>科別:內科</dd>
+                      <dd>所在地:台中</dd>
+                      <dd>診所名稱:來來診所</dd>
+                      <dd>地址:台中市公益路二段1555號</dd>
+                      <dd>指定醫生</dd>
+                    </dl>
+                </div>
+
+                <div class="rightbox-bottom">
+                    <button type="button" class="button loading-pulse lighten primary btn-block" id="saveRecord" sytle="font-size:30px" onclick="startView()">開始視訊</button>
+                    <button type="button" class="btn btn-default btn-block" onclick="">結束看診</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <div data-role="dialog" id="saveDialog" class="alert padding20 dialog" data-close-button="true" data-overlay="true" style="width: auto; height: auto; visibility: visible; left: 360.5px; top: 437px;">
+            <h1>儲存記錄</h1>
+            <p>
+                已更新紀錄
+            </p>
+        <span class="dialog-close-button"></span></div>
+
+
+    <script>
+        // $("#loading").fadeOut(3000)
+// 		$(document).ready(function(){
+// 			setTimeout(function(){
+// 				$("#loading").css("display","none");
+// 				$("#frmVedio").css("display","inline");
+// 			}, 1400);
+// 		})
+
+        function startView(){
+            	setTimeout(function(){
+				$("#loading").css("display","none");
+				$("#frmVedio").css("display","inline");
+			}, 1400);
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

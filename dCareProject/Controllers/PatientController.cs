@@ -24,9 +24,19 @@ namespace dCareProject.Controllers {
         public ActionResult look() {
             return View();
         }
+
+        public ActionResult look1() {
+            return View();
+        }
+
+        public ActionResult patientview() {
+            return View();
+        }
+        public ActionResult patientreservation() {
+            return View();
+        }
     }
 }
-
 
     
 

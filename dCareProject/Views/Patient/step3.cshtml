@@ -1,16 +1,7 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    @*<meta charset="utf-8" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"></link>
-    <link href="css/metro.css" rel="stylesheet">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/metro.js"></script>*@
+﻿
     <style type="text/css">
-        .container {
-            /*border: 1px solid Gray;*/
-            /*text-align:center;*/
-        }
+    
+        
 
         .main {
             height: 400px;
@@ -27,7 +18,7 @@
 		};
     </script>
 
-</head>
+
 <body style="font-family:微軟正黑體">
     <div class="container">
         <div class="col-md-12">
@@ -48,8 +39,22 @@
             <div class="main" style="text-align:center">
                 <p id="test1" style="font-size:30px;text-align:center">
                     請確認看診資訊<br>
-                    <br> 10月24日
-                    <br>時段:下午
+                    <br> 
+                    <script language="javascript">
+                        var hours;
+                        var Today = new Date();
+　                    document.write( Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日");
+                       
+                    </script>
+                                    
+                    <br>
+                    <script language="javascript">
+                        var hours,timeValue;
+                        var Today = new Date();
+                        hours = Today.getHours();
+                        timeValue = (hours >= 12) ? "下午 " : "上午 ";
+                        document.write("時段:"+timeValue);
+                    </script>
                     <br>科別:內科
                     <br>醫生:卓清澤
                     <br><br><a style="color:red;font-size:60px"><b>看診號碼:70號</b></a><br><br>
@@ -63,6 +68,6 @@
         </div>
     </div>
 </body>
-</html>
+
 
 
