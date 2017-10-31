@@ -1,0 +1,129 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="~/Content/doctor/css/view.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/doctor/css/metro.css">
+    <link rel="stylesheet" href="~/Content/doctor/css/metro-icon.css">
+    <link rel="stylesheet" href="~/Content/doctor/css/animate.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/doctor/js/metro.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div sytle="clear:both">
+            <!-----------------------bat-->
+            <div class="app-bar red">
+                <a class="app-bar-element branding" href="Index">dCare Doctor</a>
+                <span class="app-bar-divider"></span>
+                <ul class="app-bar-menu">
+                    <li><a href="">預約時間設定</a></li>
+                </ul>
+                <div class="app-bar-element place-right">
+                    <ul class="app-bar-menu"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!--bar-end -->
+        <br>
+
+        <div class="row" style="clear:both">
+            <div class="col-6">
+                <h3>遠端畫面</h3>
+                <div data-role="preloader" data-type="cycle" data-style="color" id="loading" style="width: 480px; height: 400px; display: none;" class="preloader-cycle color-style"><div class="cycle"></div></div>
+                <iframe height="400" width="480" scrolling="no"></iframe>
+            </div>
+
+            <div class="col-3">
+                <h3>就診紀錄</h3>
+                <select multiple="" class="form-control" style="height:400px" id="histSelect">
+                    <option id="data">2017/10/07</option>
+                    <option>2017/09/12</option>
+                </select>
+            </div>
+            <div class="rightbox col-3">
+                <div class="rightbox-top">
+                    <img src="~/img/john.jpg" alt="" class="img-rounded">
+                    <h5>病患資訊</h5>
+                    <h4>陳歐太</h4>
+                    <p>1956/11/15</p>
+
+                    <hr>
+                    <dl>
+                        <dt>健檢資料</dt>
+                        <dd>身高:160</dd>
+                        <dd>體重:68</dd>
+                        <dd>體溫:35.4</dd>
+                        <dd>脈搏:78/bpm</dd>
+                        <dd>血氧:94％</dd>
+                        <dd>所在服務地:永和宮</dd>
+                        <dd>紀錄時間:2017/11/15 14:23</dd>
+
+                    </dl>
+                </div>
+
+                <div class="rightbox-bottom">
+                    <button type="button" class="btn btn-primary btn-block" id="saveRecord" onclick="metroDialog.toggle('#saveDialog')">儲存紀錄</button>
+                    <button type="button" class="btn btn-default btn-block" onclick="javascript:location.href='Index'">結束看診</button>
+                </div>
+            </div>
+
+            <div class="col-9">
+                <h3>病歷資料 <button class="button info block-shadow-info text-shadow" id="CreateRecord">新增本次紀錄</button></h3>
+                <textarea class="form-control text-area col-md-12" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div data-role="dialog" id="saveDialog" class="alert padding20 dialog" data-close-button="true" data-overlay="true" style="width: auto; height: auto; visibility: hidden; left: 360.5px; top: 437px;">
+        <h1>儲存記錄</h1>
+        <p>
+            已更新紀錄
+        </p>
+        <span class="dialog-close-button"></span><span class="dialog-close-button"></span>
+    </div>
+    <script>
+        // $("#loading").fadeOut(3000)
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#loading").css("display", "none");
+            }, 1400);
+        })
+        // $("#histSelect").append('<option>2017/10/23</option>');
+        $("#CreateRecord").click(function () {
+            $("textarea").text("看診日期:2017/11/15,看診醫師:卓清澤 \n病歷紀錄:\n");
+        })
+        $("#saveRecord").click(function () {
+            // var foo = $('#multiple').val();
+            $('#histSelect')
+                .find('option')
+                .remove()
+                .end()
+                .append('<option>2017/11/15</option>');
+            $("#histSelect").append('<option>2017/10/07</option>');
+            $("#histSelect").append('<option>2017/09/12</option>');
+        })
+
+        $("#data").click(function () {
+            $("textarea").text("看診日期:2017/10/07,看診醫師:李承恩\n病歷紀錄:\n");
+        })
+
+    </script>
+
+
+
+
+
+
+</body>
+</html>

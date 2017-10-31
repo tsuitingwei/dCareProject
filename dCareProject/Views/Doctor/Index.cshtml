@@ -1,11 +1,13 @@
-﻿
+﻿@using dCareProject.Models
+@using dCareProject.Controllers
+
 @{
+    ViewBag.Title = "Index";
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html>
-<title>dCare Doctor System</title>
 <head>
     <meta charset="UTF-8">
     <!--bootstrap CDN-->
@@ -18,8 +20,10 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!---------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="~/Content/doctor/css/doctor-index.css" rel="stylesheet">
     <link href="~/Content/doctor/css/metro.css" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
@@ -39,28 +43,32 @@
         </div>
 
         <!--bar-end -->
+
+
+        
         <!----------------------table-->
         <div class="col-md-8 main">
 
             <div class="maintabletitle"><h3>代診列表</h3></div>
-            <table class="col-md-8 table table-hover maintable">
+            <table class="col-md-8 table table-hover maintable" id="table" style="text-align:center">
                 <tr class="active"><td>看診順序</td><td>姓名</td><td>預約時間</td><td>報到狀況</td><td>詳細資料</td></tr>
-                <tr><td>1</td><td>John</td><td>2017/10/24 14:30</td><td>以報到</td><td>詳細資料</td></tr>
-                <tr><td>1</td><td>John</td><td>2017/10/24 14:30</td><td>以報到</td><td>詳細資料</td></tr>
-                <tr><td>1</td><td>John</td><td>2017/10/24 14:30</td><td>以報到</td><td>詳細資料</td></tr>
-                <tr><td>1</td><td>John</td><td>2017/10/24 14:30</td><td>以報到</td><td>詳細資料</td></tr>
-                <tr><td>1</td><td>John</td><td>2017/10/24 14:30</td><td>以報到</td><td>詳細資料</td></tr>
-                <tr><td>1</td><td>John</td><td>2017/10/24 14:30</td><td>以報到</td><td>詳細資料</td></tr>
-            </table>
-            <!--<div class="pagination rounded pagenum mainpagenum">-->
-            <!--            <span class="item current">1</span>-->
-            <!--            <span class="item">2</span>-->
-            <!--            <span class="item">3</span>-->
-            <!--            <span class="item">4</span>-->
-            <!--            <span class="item">5</span>-->
-            <!--</div>           -->
+                   
+                 @foreach (var row in ViewBag.name)
+                 {
 
-            <nav aria-label="Page navigation" id="mainpagenum">
+                    <tr><td>@row.id</td><td>@row.name</td><td>@row.time</td><td>以報到</td><td><button onclick="get()">詳細資料</button></td></tr> 
+                 }
+                
+                
+                @*<tr><td>1</td><td>John</td><td>2017/10/24 14:30</td><td>以報到</td><td><button onclick="get()">詳細資料</button></td></tr>
+                <tr><td>2</td><td>Perer</td><td>2017/10/24 14:30</td><td>以報到</td><td><button onclick="get()">詳細資料</button></td></tr>
+                <tr><td>3</td><td>Ben</td><td>2017/10/24 14:30</td><td>以報到</td><td><button onclick="get()">詳細資料</button></td></tr>
+                <tr><td>4</td><td>Ken</td><td>2017/10/24 14:30</td><td>以報到</td><td><button onclick="get()">詳細資料</button></td></tr>
+                <tr><td>5</td><td>Qoo</td><td>2017/10/24 14:30</td><td>以報到</td><td><button onclick="get()">詳細資料</button></td></tr>
+                <tr><td>6</td><td>Zoo</td><td>2017/10/24 14:30</td><td>以報到</td><td><button onclick="get()">詳細資料</button></td></tr>*@
+            </table>
+          
+            @*<nav aria-label="Page navigation" id="mainpagenum">
                 <ul class="pagination">
                     <li>
                         <a href="#" aria-label="Previous">
@@ -78,7 +86,7 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav>*@
 
 
 
@@ -92,13 +100,15 @@
                 <div class="leftboxin-top">
                     <img src="~/img/john.jpg" alt="" class="img-rounded" height="100" width="100" style="float:left">
                     <address>
-                        <strong>John</strong><br>
-                        性別:男<br>
-                        出生年月日:0000000<br>
-                        <abbr title="Phone">電話:</abbr>(123)456-7890<br>
-                        <abbr title="address">地址:</abbr>OOOOOOOOO
+                        <b id="name">123</b>
+                        <br>
+                        性別:<span id="sex" name="性別">男</span><br>
+                        出生年月日:<span id="birth" name="出生年月日">0000000</span><br>
+                        電話:<span id="phone" name="電話">(123)456-7890</span><br>
+                        <span id="adress" name="地址">地址:OOOOOOOOO</span>
                     </address>
-                    <button type="button" class="btn btn-success btn-block" onclick="window.open('view.html', '通訊視窗', config='height=600,width=1000');">視訊通話</button>
+
+                    <button type="button" class="btn btn-success btn-block" onclick="javascript:location.href='Link'">視訊通話</button>
 
                 </div>
 
@@ -109,7 +119,17 @@
             </div>
         </div>
         <script>
+            function get() {
+                //var name = document.getElementById("listname").innerText;
+                //var test = document.getElementById("name").innerText = name;
+                var len = document.getElementById("table").rows.length;
+                for (i =0 ; i < len ; i++) {
+                    var td = document.getElementById("table").rows[i].cells[1].innerHTML;
+                }
+                alert(td);
+            }
 
+           
 
         </script>
 </body>
