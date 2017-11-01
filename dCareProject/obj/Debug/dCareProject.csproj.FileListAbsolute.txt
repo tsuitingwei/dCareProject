@@ -155,7 +155,6 @@ C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\bin\zh-Hant\System
 C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\bin\zh-Hant\System.Web.Mvc.resources.dll
 C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\obj\Debug\dCareProject.dll
 C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\obj\Debug\dCareProject.pdb
-C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\obj\Debug\dCareProject.csprojResolveAssemblyReference.cache
 C:\Users\Rioyclai\Desktop\dCare_Patient\dCareProject\dCareProject\bin\ApplicationInsights.config
 C:\Users\Rioyclai\Desktop\dCare_Patient\dCareProject\dCareProject\bin\roslyn\csc.exe
 C:\Users\Rioyclai\Desktop\dCare_Patient\dCareProject\dCareProject\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -435,3 +434,10 @@ D:\Users\user\Desktop\mixed\dCareProject\bin\zh-Hant\System.Web.Mvc.resources.dl
 D:\Users\user\Desktop\mixed\dCareProject\obj\Debug\dCareProject.csprojResolveAssemblyReference.cache
 D:\Users\user\Desktop\mixed\dCareProject\obj\Debug\dCareProject.dll
 D:\Users\user\Desktop\mixed\dCareProject\obj\Debug\dCareProject.pdb
+C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\bin\EntityFramework.dll
+C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\bin\EntityFramework.SqlServer.dll
+C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\bin\EntityFramework.xml
+C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\bin\EntityFramework.SqlServer.xml
+C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\bin\zh-Hant\EntityFramework.resources.dll
+C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\bin\zh-Hant\EntityFramework.SqlServer.resources.dll
+C:\Users\bear50117\Documents\GitHub\dCareProject\dCareProject\obj\Debug\dCareProject.csprojResolveAssemblyReference.cache

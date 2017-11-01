@@ -140,9 +140,14 @@
     <Content Include="Content\doctor\css\metro-responsive.css" />
     <Content Include="Content\doctor\css\metro.css" />
     <Content Include="Content\patient\css\bootstrap.css" />
+    <Content Include="Content\patient\css\docs.css" />
+    <Content Include="Content\patient\css\jquery-ui.css" />
+    <Content Include="Content\patient\css\jquery.dataTables.css" />
+    <Content Include="Content\patient\css\jquery.dataTables.min.css" />
     <Content Include="Content\patient\css\metro-icons.css" />
     <Content Include="Content\patient\css\metro.css" />
     <Content Include="Content\patient\css\metro.min.css" />
+    <Content Include="Content\patient\css\prettify.css" />
     <Content Include="Content\patient\fonts\metro.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -183,10 +188,16 @@
     <Content Include="scripts\jquery-3.2.1.min.js" />
     <Content Include="scripts\jquery-3.2.1.slim.js" />
     <Content Include="scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="scripts\patient\js\datatable.js" />
+    <Content Include="scripts\patient\js\docs.js" />
+    <Content Include="scripts\patient\js\ga.js" />
+    <Content Include="scripts\patient\js\jquery-ui.js" />
     <Content Include="scripts\patient\js\jquery-ui.min.js" />
+    <Content Include="scripts\patient\js\jquery.dataTables.min.js" />
     <Content Include="scripts\patient\js\jquery.js" />
     <Content Include="scripts\patient\js\jquery.min.js" />
     <Content Include="scripts\patient\js\metro.js" />
+    <Content Include="scripts\patient\js\run_prettify.js" />
     <Content Include="scripts\patient\js\select2.min.js" />
     <Content Include="web\dCareProject\doctor_pages\%28n%29-doctorlogin.html" />
     <Content Include="web\dCareProject\doctor_pages\%28n%29-driverindex.html" />
@@ -326,6 +337,8 @@
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\PatientloginController.cs" />
+    <Compile Include="Controllers\seeadoctorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -345,6 +358,7 @@
       <DependentUpon>dCareModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\listWaitView.cs" />
+    <Compile Include="Models\patient.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>dCareModel.tt</DependentUpon>
     </Compile>
@@ -387,6 +401,13 @@
     <Content Include="Views\Doctor\Calendar.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\Login.cshtml" />
+    <Content Include="Views\Patient\look1.cshtml" />
+    <Content Include="Views\Patientlogin\patientreservation.cshtml" />
+    <Content Include="Views\seeadoctor\patientview.cshtml" />
+    <Content Include="Views\Patientlogin\login.cshtml" />
+    <Content Include="Views\seeadoctor\login.cshtml" />
+    <Content Include="Views\Patientlogin\look1.cshtml" />
+    <Content Include="Views\Patient\step4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

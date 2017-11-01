@@ -1,11 +1,20 @@
-﻿
-   
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/patient/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/patient/css/metro.css" rel="stylesheet" />
+    <script src="~/scripts/patient/js/jquery.js"></script>
+    <script src="~/scripts/patient/js/metro.js"></script>
     <style type="text/css">
-      
-        .main {
-            height: 400px;
-            /*border: 1px solid;*/
+        .container {
+            /*text-align:cente*/
         }
+        .main {
+                height:300px
+
+        }
+
+         
     </style>
 
     <script type="text/javascript">
@@ -26,11 +35,11 @@
 		}
 
     </script>
-
+</head>
 <body style="font-family:微軟正黑體">
     <div class="container">
         <div class="col-md-12">
-            
+
             <div class="stepper" data-role="stepper" data-steps="3" data-start="1">
             </div>
         </div>
@@ -61,19 +70,18 @@
                 <hr>
 
                 <div style="text-align:center">
-                    <button class="button success button rounded" onclick=addRow() id="startMeasure" style="width:300px;height:80px;font-size:25px">
-                        開始量測
+                    <button class="button success button rounded" onclick=addRow() id="startMeasure" style="width:300px;height:100px;font-size:25px">
+                        開始量測 
                     </button>
                 </div>
             </div>
 
             <div style="text-align:center">
-                <button class="button info button rounded" id="btnNextStep" style="font-size:25px; display:none;width:300px;height:60px;" >
+                <button class="button info button rounded" id="btnNextStep" style="width:300px;height:50px;font-size:25px;display:none">
                     <a href="step2">下一步</a>
                 </button>
-                <br><br><br>
+                <br>
             </div>
-        
         </div></div>
 </body>
-
+</html>
