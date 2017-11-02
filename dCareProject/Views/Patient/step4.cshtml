@@ -1,19 +1,19 @@
-﻿@using dCareProject.Models
-@model List<醫生>
-
+﻿
+@{
+    ViewBag.Title = "step4";
+}
 
 <link href="~/Content/patient/css/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/patient/css/metro.css" rel="stylesheet" />
 <script src="~/scripts/patient/js/jquery.js"></script>
 <script src="~/scripts/patient/js/metro.js"></script>
-    <style type="text/css">
-    
-        .main {
-            height: 400px;
-            /*border: 1px solid;*/
-        }
-    </style>
-    <script type="text/javascript">
+<style type="text/css">
+    .main {
+        height: 400px;
+        /*border: 1px solid;*/
+    }
+</style>
+<script type="text/javascript">
 		function btnRedirection(){
 			setInterval(function(){
 				// alert("Hello");
@@ -21,7 +21,7 @@
 			}, 3000)
 
 		};
-    </script>
+</script>
 
 
 <body style="font-family:微軟正黑體">
@@ -44,14 +44,14 @@
             <div class="main" style="text-align:center">
                 <p id="test1" style="font-size:30px;text-align:center">
                     請確認看診資訊<br>
-                    <br> 
+                    <br>
                     <script language="javascript">
                         var hours;
                         var Today = new Date();
 　                    document.write( Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日");
-                       
+
                     </script>
-                                    
+
                     <br>
                     <script language="javascript">
                         var hours,timeValue;
@@ -61,12 +61,7 @@
                         document.write("時段:"+timeValue);
                     </script>
                     <br>科別:內科
-                    <br>醫生:
-
-                    @foreach (醫生 row in Model) {
-                        @row.姓名
-                    }
-
+                    <br>醫生:卓清澤
                     <br><br><a style="color:red;font-size:60px"><b>看診號碼:70號</b></a><br><br>
                     <!--<button class="button info button rounded" id="opener" style="text-align:center;font-size:25px;width:30%" onclick="metroDialog.toggle('#dialog-place-bottom-center')">確認完成</button>-->
                     <button class="button success" data-role="popover" data-popover-mode="click" onclick="btnRedirection()"
@@ -78,6 +73,4 @@
         </div>
     </div>
 </body>
-
-
 

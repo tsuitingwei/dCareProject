@@ -1,4 +1,16 @@
-﻿
+﻿@using dCareProject.Models;
+@model patient
+<link href="~/Content/patient/css/metro.css" rel="stylesheet" />
+<link href="~/Content/patient/css/metro-icons.css" rel="stylesheet" />
+<script src="~/scripts/patient/js/jquery-ui.min.js"></script>
+<script src="~/scripts/patient/js/jquery.min.js"></script>
+<script src="~/scripts/patient/js/metro.js"></script>
+<link href="~/Content/patient/css/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/patient/css/prettify.css" rel="stylesheet" />
+<link href="~/Content/patient/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="~/Content/patient/css/metro-icons.css" rel="stylesheet" />
+<script src="~/scripts/patient/js/jquery.dataTables.min.js"></script>
+
 <body style="font-family:微軟正黑體">
     <div class="container">
         <div class="col-md-12">
@@ -22,148 +34,34 @@
                         <table class="dataTable striped border bordered" role="grid" aria-describedby="example_table_info" data-role="datatable" data-searching="true">
                             <thead>
                                 <tr>
-                                    <th>日期</th>
-                                    <th>時段</th>
+                                    <th>日期與時間</th>
                                     <th>科別</th>
                                     <th>醫生</th>
-                                    <th href="step1">修改預約</th>
+                                    <th><a href="look1">修改預約</a></th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>日期</th>
-                                    <th>時段</th>
+                                    <th>日期與時間</th>
+
                                     <th>科別</th>
                                     <th>醫生</th>
-                                    <th><a>修改預約</a></th>
+                                    <th><a></a></th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a href="look1">修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                    <td><a>修改預約</a></td>
-                                </tr>
+                                @foreach (patient row in ViewBag.name) {
+                                    <tr>
+                                        <td>@row.date</td>
+                                        <td>@row.section</td>
+                                        <td>@row.doctor</td>
+                                        <td>預約完成</td>
+                                    </tr>
+                                }
+
+
+
+
                         </table>
 
                     </div>
@@ -172,99 +70,28 @@
                         <table class="dataTable striped border bordered" role="grid" aria-describedby="example_table_info" data-role="datatable" data-searching="true">
                             <thead>
                                 <tr>
-                                    <th>日期</th>
-                                    <th>時段</th>
+                                    <th>日期與時間</th>
                                     <th>科別</th>
                                     <th>醫生</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>日期</th>
-                                    <th>時段</th>
+                                    <th>日期與時間</th>
                                     <th>科別</th>
                                     <th>醫生</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
-                                <tr>
-                                    <td>2017/06/30</td>
-                                    <td>下午</td>
-                                    <td>內科</td>
-                                    <td>卓清澤</td>
-                                </tr>
+                                @foreach (patient row in ViewBag.name) {
+                                    <tr>
+                                        <td>@row.date</td>
+                                        <td>@row.section</td>
+                                        <td>@row.doctor</td>
+
+                                    </tr>
+                                }
+
                         </table>
                     </div>
                 </div>
