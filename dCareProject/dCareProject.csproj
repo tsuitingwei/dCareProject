@@ -154,6 +154,8 @@
     <Content Include="Global.asax" />
     <Content Include="img\doctorlogin.jpg" />
     <Content Include="img\john.jpg" />
+    <Content Include="img\lai.jpg" />
+    <Content Include="img\yan.jpg" />
     <Content Include="Models\dCareModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dCareModel.edmx</DependentUpon>
