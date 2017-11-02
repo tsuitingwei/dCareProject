@@ -5,8 +5,13 @@ using System.Web;
 
 namespace dCareProject.Models {
     public class listWaitView {
-        public int id { get; set; }
-        public DateTime time  { get; set; }
-        public string name { get; set; }
+        public int id;
+        public string name;
+        public DateTime time;
+        public string gender;
+        public string phone;
+        public string address;
+        public DateTime birth;
+        public int pid;
     }
 }
