@@ -191,6 +191,8 @@
     <Content Include="Content\doctor\css\metro-icons.css" />
     <Content Include="Content\doctor\css\metro-responsive.css" />
     <Content Include="Content\doctor\css\metro.css" />
+    <Content Include="Content\doctor\js\jquery.js" />
+    <Content Include="Content\doctor\js\metro.js" />
     <Content Include="Content\patient\css\bootstrap.css" />
     <Content Include="Content\patient\css\metro-icons.css" />
     <Content Include="Content\patient\css\metro.css" />
@@ -199,9 +201,20 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\10.jpg" />
+    <Content Include="img\9.jpg" />
     <Content Include="img\doctorlogin.jpg" />
     <Content Include="img\john.jpg" />
+    <Content Include="img\lai.jpg" />
     <Content Include="img\yan.jpg" />
+    <Content Include="img\傅學煥.jpg" />
+    <Content Include="img\劉品德.jpg" />
+    <Content Include="img\鍾惠晴.jpg" />
+    <Content Include="img\陳伯彥.jpg" />
+    <Content Include="img\陳歐太.jpg" />
+    <Content Include="img\陳鑫益.jpg" />
+    <Content Include="img\黃真新.jpg" />
+    <Content Include="img\黃美麗.jpg" />
     <Content Include="Models\dCareModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dCareModel.edmx</DependentUpon>
@@ -233,6 +246,7 @@
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <None Include="scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="scripts\doctor\datatable.js" />
     <Content Include="scripts\doctor\fullcalendar.min.js" />
     <Content Include="scripts\doctor\jquery.min.js" />
     <Content Include="scripts\doctor\metro.js" />
@@ -385,6 +399,8 @@
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\PatientloginController.cs" />
+    <Compile Include="Controllers\seeadoctorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -403,7 +419,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dCareModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\linkdata.cs" />
     <Compile Include="Models\listWaitView.cs" />
+    <Compile Include="Models\patient.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>dCareModel.tt</DependentUpon>
     </Compile>
@@ -451,6 +469,14 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\Patient.cshtml" />
     <Content Include="Views\Doctor\Link.cshtml" />
+    <Content Include="Views\Patientlogin\login.cshtml" />
+    <Content Include="Views\Patientlogin\look1.cshtml" />
+    <Content Include="Views\Patientlogin\patientreservation.cshtml" />
+    <Content Include="Views\seeadoctor\login.cshtml" />
+    <Content Include="Views\seeadoctor\patientview.cshtml" />
+    <Content Include="Views\Patient\look1.cshtml" />
+    <Content Include="Views\Patient\step4.cshtml" />
+    <Content Include="Views\Doctor\History.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
