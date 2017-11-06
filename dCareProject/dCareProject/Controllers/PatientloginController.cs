@@ -33,7 +33,7 @@ namespace dCareProject.Controllers
                             birthday = c.出生年月日,
                             addressID = c.看診點ID.Value,
                             healthDate = d.健檢時間,
-                            patientid = o.病人ID.Value
+                            patientid = o.ID
                             
                            
 
@@ -48,7 +48,8 @@ namespace dCareProject.Controllers
 
 
                         select o;
-
+            //System.Threading.Thread.Sleep(3000);
+            //return RedirectToAction("patientreservation", "Patientlogin");
             return View(query.ToList());
         }
     }

@@ -99,6 +99,14 @@ namespace dCareProject.Controllers {
             //return View(viewData);
             return View(query.ToList());
         }
+        //[HttpPost]
+        //public ActionResult look1(int id) {
+
+
+        //    System.Threading.Thread.Sleep(3000);
+        //    return RedirectToAction("patientreservation", "Patient");
+        //    //return View();
+        //}
 
         public ActionResult patientview() {
             return View();
