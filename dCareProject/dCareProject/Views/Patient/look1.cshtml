@@ -1,0 +1,86 @@
+﻿@using dCareProject.Models;
+@model List<醫生>
+
+<link href="~/Content/patient/css/metro.css" rel="stylesheet" />
+<script src="~/scripts/patient/js/jquery.js"></script>
+<script src="~/scripts/patient/js/select2.min.js"></script>
+<script src="~/scripts/patient/js/metro.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+<body style="font-family:微軟正黑體;font-size:24px">
+    
+
+    <div class="col-md-12">
+        <div class="app-bar">
+            <span class="app-bar-divider"></span>
+            <ul class="app-bar-menu">
+                <li><a href="index">回到首頁</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form method="post" action="">
+                請選擇科別 :
+                <select id="select" style="font-size:24px;height:40px">
+
+                    <option>內科</option>
+                    <option>外科</option>
+                    <option>家醫科</option>
+                    <option>皮膚科</option>
+                 </select>
+
+                <br /><br />
+
+                請選擇日期 : <input id="thedate" type="text" style="width:160px" value="2017-11" /><br /><br />
+                請選擇時段 : <select id="select" style="font-size:24px;height:40px">
+                                <option>上午</option>
+                                <option>下午</option>
+                             </select><br /><br />
+
+                請選擇醫生 : <select id="select" style="font-size:24px;height:40px">
+                    @foreach (醫生 row in Model) {
+                        <option>@row.姓名 @row.科別</option>
+                    }
+
+                </select><br /><br /><br />
+                <input type="submit" value="確認送出" class="button info button rounded" data-role="popover" data-popover-mode="click" onclick="btnRedirection()"
+                        data-popover-position="right" data-popover-text="已成功修改預約,請準時赴約 "
+                        data-popover-background="bg-cyan" data-popover-color="fg-white" style="font-size:24px;height:40px;text-align:center"><br />
+                    
+            </form>
+            </div>
+        <div class="col-md-4"></div>
+        </div>
+
+        
+
+        <script>
+            $(function () {
+
+                $('#thedate').datepicker({
+                    
+                    autoSize:10,
+                    dateFormat: 'yy-mm-dd',
+                    minDate: 0, //限制最小日期，從今天開始。過去不可選。
+                    
+                });
+                $("#ui-datepicker-div").css('font-size', '0.5em')
+
+            });
+        </script>
+  
+    <script type="text/javascript">
+		function btnRedirection(){
+			setInterval(function(){
+				// alert("Hello");
+				location.href="look";
+			}, 3000)
+
+		};
+    </script>
+
+
+</body>

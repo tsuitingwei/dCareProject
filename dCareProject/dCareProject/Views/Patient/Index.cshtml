@@ -1,0 +1,89 @@
+﻿<head>
+
+    <link href="~/Content/patient/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/patient/css/metro.css" rel="stylesheet" />
+    <script src="~/scripts/patient/js/jquery.js"></script>
+    <style type="text/css">
+        .container {
+            text-align: center;
+            /*margin-top:70px;*/
+        }
+
+        .main {
+            margin-top: 70px;
+        }
+
+        .quit {
+            margin-top: 23px;
+        }
+    </style>
+
+
+</head>   
+<body style="font-family:微軟正黑體">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="app-bar">
+                    <span class="app-bar-divider"></span>
+                    <ul class="app-bar-menu">
+                        <li><a href="/Patient/Index">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+               
+                    <input type="submit" class="button info button rounded" name="health" style="height:300px;width:100%;font-size:40px" onclick="redirect()" value="開始健康量測">
+                    <input type="submit" class="button info button rounded" name="modify" style="height:300px;width:100%;font-size:40px" onclick="redirect1()" value="修改預約">
+                
+                     </div>
+
+            <div class="col-md-6">
+                <a style="color:red;font-size:60px"><b>目前看診:64</b></a><br>
+                <br>
+                <a style="font-size:40px"><b>候診名單</b></a><br>
+                <table class="table table-hover" style="font-size:30px">
+
+                    <tr>
+                        <td>號碼</td>
+                        <td>名字</td>
+                    </tr>
+                    <tr>
+                        <td>65</td>
+                        <td>崔O麟</td>
+                    <tr>
+                        <td>66</td>
+                        <td>王O洺</td>
+                    </tr>
+                    <tr>
+                        <td>67</td>
+                        <td>楊O晴</td>
+                    </tr>
+                    <tr>
+                        <td>68</td>
+                        <td>黃O哲</td>
+                    </tr>
+                    <tr>
+                        <td>69</td>
+                        <td>黃O洋</td>
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+    </div> 
+   
+    
+   
+    <script>
+        function redirect() {
+            window.location.href = 'step1';
+        }
+        function redirect1() {
+            window.location.href = 'look';
+        }
+    </script>
+
+   </body>
