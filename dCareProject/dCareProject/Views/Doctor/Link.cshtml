@@ -2,14 +2,15 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html>
+<html >
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="~/Content/doctor/css/view.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/doctor/css/metro.css">
-    <link rel="stylesheet" href="~/Content/doctor/css/metro-icon.css">
+    <link rel="stylesheet" href="~/Content/doctor/css/metro-icons.css" />
     <link rel="stylesheet" href="~/Content/doctor/css/animate.css">
+    <link rel="stylesheet" href="~/Content/doctor/css/docs.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/doctor/js/metro.js"></script>
 </head>
@@ -38,7 +39,7 @@
             <div class="col-6">
                 <h3>遠端畫面</h3>
                 <div data-role="preloader" data-type="cycle" data-style="color" id="loading" style="width: 480px; height: 400px;" class="preloader-cycle color-style"><div class="cycle"></div></div>
-                <iframe height="400" width="480" scrolling="no"></iframe>
+                <iframe height="400" width="480" scrolling="no" src="http://10.2.1.203:8081"></iframe>
             </div>
 
             <div class="col-3">
@@ -50,35 +51,42 @@
             </div>
             <div class="rightbox col-3">
                 <div class="rightbox-top">
-                    <img src="~/img/john.jpg" alt="" class="img-rounded">
+                    <img src="~/img/陳歐太.jpg" alt="" class="img-rounded">
                     <h5>病患資訊</h5>
-                    <h4>陳歐太</h4>
-                    <p>1956/11/15</p>
-
-                    <hr>
+                    <h4 name="姓名">陳歐太</h4>
+                    <p name="出生年月日">1956/11/15</p>
+                   
                     <dl>
                         <dt>健檢資料</dt>
                         <dd>身高:160</dd>
-                        <dd>體重:68</dd>
-                        <dd>體溫:35.4</dd>
-                        <dd>脈搏:78/bpm</dd>
-                        <dd>血氧:94％</dd>
+                        <dd>體重:<span name="體重">65</span></dd>
+                        <dd>體溫:<span name="體溫">35.4</span></dd>
+                        <dd>脈搏:<span name="脈搏">78/bpm</span></dd>
+                        <dd>血氧:<span name="血氧">94％</span></dd>
                         <dd>所在服務地:永和宮</dd>
-                        <dd>紀錄時間:2017/11/15 14:23</dd>
-
+                        <dd>紀錄時間:<span name="健檢時間">94％</span></dd>
                     </dl>
-                </div>
 
+
+
+                </div>
+                <hr />
                 <div class="rightbox-bottom">
+                   下次看診日期:
+                    <div class="input-control text" id="datepicker">
+                            <input type="text" name="登記日期">
+                        <button class="button"><span class="mif-automobile"></span></button>
+                    </div>
+                    
                     <button type="button" class="btn btn-primary btn-block" id="saveRecord" onclick="metroDialog.toggle('#saveDialog')">儲存紀錄</button>
-                    <button type="button" class="btn btn-default btn-block" onclick="javascript:location.href='Index'">結束看診</button>
+                    <button type="submit" value="ok" class="btn btn-default btn-block btn-danger"  id="submit">結束看診</button>
                 </div>
             </div>
 
             <div class="col-9">
                 <h3>病歷資料 <button class="button info block-shadow-info text-shadow" id="CreateRecord">新增本次紀錄</button></h3>
-                <textarea class="form-control text-area col-md-12" rows="3"></textarea>
-            </div>
+                    <textarea class="form-control text-area col-md-12" rows="3" name="看診紀錄"></textarea>
+             </div>
         </div>
     </div>
 
@@ -92,33 +100,70 @@
         </p>
         <span class="dialog-close-button"></span><span class="dialog-close-button"></span>
     </div>
+    
     <script>
+        $("#idform").hide();
         // $("#loading").fadeOut(3000)
         $(document).ready(function () {
             setTimeout(function () {
                 $("#loading").css("display", "none");
             }, 1400);
+            $("#submit").hide();
         })
         // $("#histSelect").append('<option>2017/10/23</option>');
+
         $("#CreateRecord").click(function () {
-            $("textarea").text("看診日期:2017/11/15,看診醫師:卓清澤 \n病歷紀錄:\n");
+            var today = new Date();
+            var currentDateTime =
+            today.getFullYear() + '/' +
+            (today.getMonth() + 1) + '/' +
+            today.getDate() + ',' +
+            today.getHours() + ':' + today.getMinutes();
+            $("textarea").text("看診日期:" + currentDateTime + ' , ' + "看診醫師:卓清澤 \n病歷紀錄:\n");
         })
+
+
         $("#saveRecord").click(function () {
+            var today = new Date();
+            var currentDateTime =
+            today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
             // var foo = $('#multiple').val();
             $('#histSelect')
                 .find('option')
                 .remove()
                 .end()
-                .append('<option>2017/11/15</option>');
+                .append('<option>' + currentDateTime + '</option>');
             $("#histSelect").append('<option>2017/10/07</option>');
             $("#histSelect").append('<option>2017/09/12</option>');
         })
 
+
         $("#data").click(function () {
-            $("textarea").text("看診日期:2017/10/07,看診醫師:李承恩\n病歷紀錄:\n");
+            var today = new Date();
+            var currentDateTime =
+                today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+            if (confirm('確認要歷史紀錄嗎？ 目前記錄會清空') == true){
+                $("textarea").text("看診日期:" + currentDateTime  +",看診醫師:李承恩\n病歷紀錄:\n" + "Contrary to popular belief, is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H.Rackham.");
+            }
         })
 
-    </script>
+
+        $("#saveDialog").click(function () {
+            $("#submit").addClass("btn-danger");
+            $("#submit").show();
+        })
+
+
+        $(function(){
+            $("#datepicker").datepicker();
+        });
+
+        $("#submit").click(function () {
+            alert("看診結束");
+            document.location = '@Url.Action("Index","Doctor")';
+        })
+
+   </script>
 
 
 
