@@ -1,0 +1,122 @@
+﻿@using dCareProject.Models;
+@model patient
+
+
+<link href="~/Content/patient/css/metro.css" rel="stylesheet" />
+<link href="~/Content/patient/css/metro-icons.css" rel="stylesheet" />
+<script src="~/scripts/patient/js/jquery-ui.min.js"></script>
+<script src="~/scripts/patient/js/jquery.min.js"></script>
+<script src="~/scripts/patient/js/metro.js"></script>
+<link href="~/Content/patient/css/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/patient/css/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/scripts/patient/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/patient/css/bootstrap.css" rel="stylesheet" />
+<body style="font-family:微軟正黑體">
+    <div class="container">
+        <div class="app-bar red">
+            <a class="app-bar-element branding">dCare Patient</a>
+            <span class="app-bar-divider"></span>
+            <ul class="app-bar-menu">
+                <li><a href=""></a></li>
+            </ul>
+            <div class="app-bar-element place-right">
+                <ul class="app-bar-menu">
+                    <li><a href="">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top:20px">
+            <div class="left col-md-4">
+
+                <div style="text-align:center">
+                    <div class="rightbox-top">
+                        <img src="~/img/yan.jpg" class="img-rounded" style="height:170px;width:150px">
+                        <hr />
+                        
+                        <h2>個人資料</h2>
+                       
+                        <h4>姓名:陳歐太<span class="mif-venus fg-pink"></span></h4>
+                        <h4>科別:內科</h4>
+                        <h4>出生年月日:1957/10/15</h4>
+                        <h4>電話:0976952011</h4>
+                        <h4>地址:苗栗縣苗栗市</h4>
+                        
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="right col-md-8">
+                <div class="tabcontrol2" data-role="tabcontrol">
+                    <ul class="tabs">
+
+                        <li><a href="#frame_1" style="font-size:20px">修改預約</a></li>
+                        <li><a href="#frame_2" style="font-size:20px">看診紀錄</a></li>
+                    </ul>
+                    <div class="frames">
+
+                        <div class="frame" id="frame_1">
+                            <table class="dataTable striped border bordered" role="grid" aria-describedby="example_table_info" data-role="datatable" data-searching="true">
+                                <thead>
+                                    <tr>
+                                        <th>日期與時間</th>
+                                        <th>科別</th>
+                                        <th>醫生</th>
+                                        <th>修改預約</th>
+                                    </tr>
+                                </thead>
+                               
+                                <tbody>
+                                    @foreach (patient row in ViewBag.name) {
+                                        <tr>
+                                            <td>@row.date</td>
+                                            <td>@row.section</td>
+                                            <td>@row.doctor</td>
+                                            <td><a href="look1/@row.patientid">修改預約</a></td>
+                                        </tr>
+                                    }
+                                    
+
+
+
+                            </table>
+
+                        </div>
+
+                        <div class="frame" id="frame_2">
+                            <table class="dataTable striped border bordered" role="grid" aria-describedby="example_table_info" data-role="datatable" data-searching="true">
+                                <thead>
+                                    <tr>
+                                        <th>日期與時間</th>
+                                        <th>科別</th>
+                                        <th>醫生</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>日期與時間</th>
+                                        <th>科別</th>
+                                        <th>醫生</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (patient row in ViewBag.name) {
+                                        <tr>
+                                            <td>@row.healthDate</td>
+                                            <td>@row.section</td>
+                                            <td>@row.doctor</td>
+
+                                        </tr>
+                                    }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    </div>
+
+</body>
+

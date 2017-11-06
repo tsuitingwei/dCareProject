@@ -1,0 +1,40 @@
+body {
+    font-family: "微軟正黑體"
+}
+.container{
+    margin-top: 40px;
+}
+
+.rightbox {
+    float: right;
+    height: 400px;
+    text-align: left;
+}
+
+.rightbox-bottom{
+    height: 50px;
+    
+}
+.mainbox {
+    float: left;
+    height: 600px;
+}
+
+.text-area{
+    height: 200px;
+}
+
+.listboxx{
+    float: right;
+    height: 400px;
+}
+
+
+#loading {
+    height:600px;
+    width: 1000px;
+    z-index: 999;
+    position: absolute;
+    float: inherit;
+    background-color: #555;
+}
