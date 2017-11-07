@@ -409,6 +409,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dCareModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\linkdata.cs" />
     <Compile Include="Models\listWaitView.cs" />
     <Compile Include="Models\patient.cs" />
     <Compile Include="Models\sysdiagram.cs">

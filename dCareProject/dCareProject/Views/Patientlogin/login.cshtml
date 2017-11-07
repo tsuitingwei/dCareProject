@@ -51,7 +51,9 @@
             <br>
             <div class="form-actions">
                 <a type="submit" class="button primary" href="patientreservation">Login</a>
-                <a type="button" class="button link" href="#">Cancel</a>
+                @*<a type="button" class="button link" href="#">Cancel</a>*@
+                <a class="button link" onclick="javascript:document.location ='@Url.Action("Index","Home")'">Cancel</a>
+
             </div>
         </form>
     </div>
