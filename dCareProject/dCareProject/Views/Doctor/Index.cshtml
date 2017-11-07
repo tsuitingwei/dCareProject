@@ -17,7 +17,7 @@
     <script src="~/Content/doctor/js/jquery.js"></script>
     <link href="~/Content/doctor/css/doctor-index.css" rel="stylesheet">
     <link href="~/Content/doctor/css/metro.css" rel="stylesheet">
-
+  
 </head>
 <body>
     <div class="container" style="font-family:'微軟正黑體'">
@@ -37,35 +37,42 @@
         </div>
 
         <!--bar-end -->
-
-
-        
         <!----------------------table-->
         <div class="col-md-8 main">
 
             <div class="maintabletitle"><h3 style="font-family:'微軟正黑體'">待診列表</h3></div>
-            <table class="col-md-8 table table-hover maintable" id="table" style="text-align:center">
-                <tr class="active"><td>預約順序</td><td>姓名</td><td>預約時間</td><td>報到狀況</td><td>詳細資料</td></tr>
-                @*<tr><td>25</td><td>陳歐太</td><td>2017/11/06 10:10:10</td><td style="color:chartreuse">已報到</td><td><button class="button" onclick="get()">詳細資料</button></td>*@
+            <div class="table-responsive">
+                <table class="col-md-8 table table-hover maintable" id="table" style="text-align:center">
+                    <tr class="active"><th style="height:20px;">預約順序</th><th style="height:20px">姓名</th><th style="height:20px">預約時間</th><th style="height:20px">報到狀況</th><th style="height:20px">詳細資料</th></tr>
+                    @*<tr><td>25</td><td>陳歐太</td><td>2017/11/06 10:10:10</td><td style="color:chartreuse">已報到</td><td><button class="button" onclick="get()">詳細資料</button></td>*@
                     @foreach (var row in ViewBag.name)
                     {
 
-                        <tr><td>@row.id</td><td>@row.name</td><td>@row.time</td>
-                    
-                 @if ( row.time == new DateTime().Date || row.id == 28 )
-                    {
-                        <td id="check" style="color:darkblue">已報到</td>
+                        <tr>
+                            <td>@row.id</td>
+                            <td>@row.name</td>
+                            <td>@row.time</td>
 
+                            @if (row.time == new DateTime().Date || row.id == 28)
+                            {
+                                <td id="check" style="color:darkblue">已報到</td>
+
+                            }
+                            else
+                            {
+                                <td id="check" style="color:crimson">未報到</td>
+                            }
+
+                            <td><button class="button" onclick="get()">詳細資料</button></td>
+                            <td class="hide" id="foradress">@row.address</td>
+                            <td class="hide" id="forsex">@row.gender</td>
+                            <td class="hide" id="forphone">@row.phone</td>
+                            <td class="hide" id="pid">@row.linkid</td>
+                        </tr>
                     }
-                 else
-                    {
-                        <td id="check"style="color:crimson">未報到</td> 
-                    }
-                
-                    <td><button class="button" onclick="get()">詳細資料</button></td><td class="hide" id="foradress">@row.address</td><td class="hide" id="forsex">@row.gender</td><td class="hide" id="forphone">@row.phone</td></tr> 
-                 }
-                
-            </table>
+
+                </table>
+            </div>
 
         </div>
         <!----------------------table end-->
@@ -83,67 +90,79 @@
                         出生年月日: <span id="birth" name="出生年月日">54/06/10</span><br>
                         電話: <span id="phone" name="電話">0925874495</span><br>
                         地址: <span id="address" name="地址">南投市草屯鎮</span>
+                        <div class="hide" id="linkid" name="linkid">--</div>
                     </address>
 
-                    <button id="Link" type="button" class="btn btn-success btn-block" onclick="javascript:document.location ='@Url.Action("Link","Doctor")'">視訊通話</button>
+                    @*<button id="Link" type="button" class="btn btn-success btn-block" onclick="javascript:document.location ='@Url.Action("Link","Doctor")'">視訊通話</button>*@
+                    <button id="Link" type="button" class="btn btn-success btn-block" onclick="goLink()">視訊通話</button>
 
                 </div>
 
                 <div class="leftboxin-und">
                 </div>
-            
-                </div>
+
             </div>
         </div>
-        <script>
+    </div>
+    <script>
+        var pid //pid = patient ID.
+
+        $(document).ready(function () {
+            var name = document.getElementById("table").rows[1].cells[1].innerHTML;
+            var adresss = document.getElementById("table").rows[1].cells[5].innerHTML;
+            var gender = document.getElementById("table").rows[1].cells[6].innerHTML;
+            var phone = document.getElementById("table").rows[1].cells[7].innerHTML;
+            var linkid = document.getElementById("table").rows[1].cells[8].innerHTML;
+
+            document.getElementById("name").innerHTML = name;
+            document.getElementById("address").innerHTML = adresss;
+            document.getElementById("gender").innerHTML = gender;
+            document.getElementById("phone").innerHTML = phone;
+            document.getElementById("linkid").innerHTML = linkid;
+            document.getElementById("photo").src = "/img/" + name.trim() + ".jpg";
+
+            var s = document.getElementById("table").rows[1].cells[3].innerHTML;
+            if (s == "未報到") {
+                $("#Link").removeClass("btn-success").text("未報到");
+            }
+        })
 
 
-            $()
 
-            $(document).ready(function () {
-                var name = document.getElementById("table").rows[1].cells[1].innerHTML;
-                var adresss = document.getElementById("table").rows[1].cells[5].innerHTML;
-                var gender = document.getElementById("table").rows[1].cells[6].innerHTML;
-                var phone = document.getElementById("table").rows[1].cells[7].innerHTML;
-                document.getElementById("name").innerHTML = name;
-                document.getElementById("address").innerHTML = adresss;
-                document.getElementById("gender").innerHTML = gender;
-                document.getElementById("phone").innerHTML = phone;
-                document.getElementById("photo").src = "/img/" + name.trim() + ".jpg";
-                var s = document.getElementById("table").rows[1].cells[3].innerHTML;
+        $(".button").click(function () {
+            var p = $(this).parent().parent().index();
+            var name = document.getElementById("table").rows[p].cells[1].innerHTML;
+            var adresss = document.getElementById("table").rows[p].cells[5].innerHTML;
+            var gender = document.getElementById("table").rows[p].cells[6].innerHTML;
+            var phone = document.getElementById("table").rows[p].cells[7].innerHTML;
+            var linkid = document.getElementById("table").rows[p].cells[8].innerHTML;
 
-                if (s == "未報到") {
-                    $("#Link").removeClass("btn-success").text("未報到");
-                } 
-            })
+            document.getElementById("name").innerHTML = name;
+            document.getElementById("address").innerHTML = adresss;
+            document.getElementById("gender").innerHTML = gender;
+            document.getElementById("phone").innerHTML = phone;
+            document.getElementById("linkid").innerHTML = linkid;
 
-                
+            var photoname = name.trim();
+            document.getElementById("photo").src = "/img/" + photoname + ".jpg";
 
-                $(".button").click(function () {
-                    var p = $(this).parent().parent().index();
-                    var name = document.getElementById("table").rows[p].cells[1].innerHTML;
-                    var adresss = document.getElementById("table").rows[p].cells[5].innerHTML;
-                    var gender = document.getElementById("table").rows[p].cells[6].innerHTML;
-                    var phone = document.getElementById("table").rows[p].cells[7].innerHTML;
-                    document.getElementById("name").innerHTML = name;
-                    document.getElementById("address").innerHTML = adresss;
-                    document.getElementById("gender").innerHTML = gender;
-                    document.getElementById("phone").innerHTML = phone;
-                    var photoname = name.trim();
-                    document.getElementById("photo").src = "/img/" + photoname + ".jpg";
+            var s = document.getElementById("table").rows[p].cells[3].innerHTML;
+            if (s == "未報到") {
+                $("#Link").removeClass("btn-success").text("未報到");
+            } else {
+                $("#Link").addClass("btn-success").text("視訊通話");
+            }
 
-                    var s = document.getElementById("table").rows[p].cells[3].innerHTML;
-                    if (s == "未報到") {
-                        $("#Link").removeClass("btn-success").text("未報到");
-                    } else {
-                        $("#Link").addClass("btn-success").text("視訊通話");
-                    }
+        })
 
-            })
+        
+        function goLink() {
+            var pid = document.getElementById("linkid").innerHTML;
+            location.href = "link?id=" + pid; //pid = patient ID.
+        }
+        
 
-                
 
-               
-        </script>
+    </script>
 </body>
 </html>
