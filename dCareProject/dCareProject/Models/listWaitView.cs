@@ -13,6 +13,5 @@ namespace dCareProject.Models {
         public string address;
         public DateTime birth;
         public int pid;
-        public int linkid;
     }
 }
