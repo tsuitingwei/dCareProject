@@ -19,7 +19,7 @@ namespace dCareProject.Models
         public Nullable<int> 醫生ID { get; set; }
         public Nullable<int> 看診紀錄表ID { get; set; }
         public Nullable<System.DateTime> 登記時間 { get; set; }
-        public string 預約結果 { get; set; }
+        public string 看診結果 { get; set; }
         public string 報到結果 { get; set; }
     
         public virtual 看診紀錄表 看診紀錄表 { get; set; }

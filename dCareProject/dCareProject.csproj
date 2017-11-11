@@ -185,12 +185,35 @@
     <Content Include="bin\zh-Hant\System.Web.Webpages.resources.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\doctor\css\animate.css" />
     <Content Include="Content\doctor\css\doctor-index.css" />
     <Content Include="Content\doctor\css\fullcalendar.min.css" />
     <Content Include="Content\doctor\css\fullcalendar.print.min.css" />
     <Content Include="Content\doctor\css\metro-icons.css" />
     <Content Include="Content\doctor\css\metro-responsive.css" />
     <Content Include="Content\doctor\css\metro.css" />
+    <Content Include="Content\doctor\css\view.css" />
+    <Content Include="Content\doctor\js\jquery.js" />
+    <Content Include="Content\doctor\js\metro.js" />
+    <Content Include="Content\home\dCare.css" />
+    <Content Include="Content\home\fonts\font-awesome.min.css" />
+    <Content Include="Content\home\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\home\img\1_BXnZBWsmZH3o6LCWinGPfQ.jpeg" />
+    <Content Include="Content\home\img\20161204a06.jpg" />
+    <Content Include="Content\home\img\21_BXnZBWsmZH3o6LCWinGPfQ.jpg" />
+    <Content Include="Content\home\img\220161204a06.jpg" />
+    <Content Include="Content\home\img\2Cardiologist.jpg" />
+    <Content Include="Content\home\img\2shutterstock_317554598.jpg" />
+    <Content Include="Content\home\img\495-1209240SZ0212.jpg" />
+    <Content Include="Content\home\img\bcb8f2928449ead8b711fd3ea05b774a.jpeg" />
+    <Content Include="Content\home\img\Cardiologist.jpg" />
+    <Content Include="Content\home\img\epdm-admin.jpg" />
+    <Content Include="Content\home\img\Fotolia_39546089_M.jpg" />
+    <Content Include="Content\home\img\long.jpg" />
+    <Content Include="Content\home\img\one.jpg" />
+    <Content Include="Content\home\img\shutterstock_317554598.jpg" />
+    <Content Include="Content\home\img\talkdoctor.jpg" />
+    <Content Include="Content\home\img\two.jpg" />
     <Content Include="Content\patient\css\bootstrap.css" />
     <Content Include="Content\patient\css\jquery-ui.css" />
     <Content Include="Content\patient\css\metro-icons.css" />
@@ -200,6 +223,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\10.jpg" />
+    <Content Include="img\7.jpg" />
     <Content Include="img\doctorlogin.jpg" />
     <Content Include="img\john.jpg" />
     <Content Include="img\lai.jpg" />
@@ -234,7 +259,13 @@
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="Content\home\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\home\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\home\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\home\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\home\fonts\FontAwesome.otf" />
     <None Include="scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="scripts\doctor\datatable.js" />
     <Content Include="scripts\doctor\fullcalendar.min.js" />
     <Content Include="scripts\doctor\jquery.min.js" />
     <Content Include="scripts\doctor\metro.js" />
@@ -243,11 +274,16 @@
     <Content Include="scripts\jquery-3.2.1.min.js" />
     <Content Include="scripts\jquery-3.2.1.slim.js" />
     <Content Include="scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="scripts\patient\js\datatable.js" />
+    <Content Include="scripts\patient\js\docs.js" />
+    <Content Include="scripts\patient\js\ga.js" />
     <Content Include="scripts\patient\js\jquery-ui.js" />
     <Content Include="scripts\patient\js\jquery-ui.min.js" />
+    <Content Include="scripts\patient\js\jquery.dataTables.min.js" />
     <Content Include="scripts\patient\js\jquery.js" />
     <Content Include="scripts\patient\js\jquery.min.js" />
     <Content Include="scripts\patient\js\metro.js" />
+    <Content Include="scripts\patient\js\run_prettify.js" />
     <Content Include="scripts\patient\js\select2.min.js" />
     <Content Include="web\dCareProject\doctor_pages\%28n%29-doctorlogin.html" />
     <Content Include="web\dCareProject\doctor_pages\%28n%29-driverindex.html" />
@@ -412,9 +448,6 @@
     <Compile Include="Models\linkdata.cs" />
     <Compile Include="Models\listWaitView.cs" />
     <Compile Include="Models\patient.cs" />
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>dCareModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\病人.cs">
       <DependentUpon>dCareModel.tt</DependentUpon>
     </Compile>
@@ -446,7 +479,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="scripts\jquery-3.2.1.min.map" />
-    <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Patient\step1.cshtml" />
     <Content Include="Views\Patient\step2.cshtml" />
     <Content Include="Views\Patient\step3.cshtml" />
@@ -466,6 +498,7 @@
     <Content Include="Views\seeadoctor\patientview.cshtml" />
     <Content Include="Views\Patient\look1.cshtml" />
     <Content Include="Views\Patient\step4.cshtml" />
+    <Content Include="Views\Patient\home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

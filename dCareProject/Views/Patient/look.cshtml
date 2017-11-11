@@ -1,9 +1,16 @@
 ﻿@using dCareProject.Models;
 @model patient
+@{
+    LkManger lkm = new LkManger();
+    var query = lkm.getlkm;
+}
+<script src="~/scripts/patient/js/jquery.min.js"></script>
+<script src="~/scripts/patient/js/jquery.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 <link href="~/Content/patient/css/metro.css" rel="stylesheet" />
 <link href="~/Content/patient/css/metro-icons.css" rel="stylesheet" />
 <script src="~/scripts/patient/js/jquery-ui.min.js"></script>
-<script src="~/scripts/patient/js/jquery.min.js"></script>
 <script src="~/scripts/patient/js/metro.js"></script>
 <link href="~/Content/patient/css/jquery-ui.css" rel="stylesheet" />
 <link href="~/Content/patient/css/prettify.css" rel="stylesheet" />
@@ -17,7 +24,7 @@
             <div class="app-bar">
                 <span class="app-bar-divider"></span>
                 <ul class="app-bar-menu">
-                    <li><a href="index">回到首頁</a></li>
+                    <li><a href="home">回到首頁</a></li>
                 </ul>
             </div>
 
@@ -27,6 +34,7 @@
 
                     <li><a href="#frame_1" style="font-size:20px">修改預約</a></li>
                     <li><a href="#frame_2" style="font-size:20px">看診紀錄</a></li>
+                    <li><a href="#frame_3" style="font-size:20px">紀錄圖表</a></li>
                 </ul>
                 <div class="frames">
 
@@ -51,11 +59,11 @@
                                     </tr>
                                 }
 
-
+                              
 
 
                         </table>
-
+                        
                     </div>
 
                     <div class="frame" id="frame_2">
@@ -79,6 +87,106 @@
                                 }
 
                         </table>
+                    </div>
+                    <div class="frame" id="frame_3">
+                        <div id="container" style="width:700px; height: 400px; margin: 0 auto"></div>
+                        <script language="JavaScript">
+    $(document).ready(function() {
+        var title = {
+            text: 'dCare 健檢紀錄'
+        };
+        var subtitle = {
+            text: ''
+        };
+        var xAxis = {
+            categories: [@foreach (var row in query) {
+                            @(row.用藥紀錄+",")
+
+            }
+                
+
+                
+                
+            ]
+        };
+        var yAxis = {
+            title: {
+                text: ''
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        };
+
+        var tooltip = {
+            valueSuffix: ''
+        }
+
+        var legend = {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        };
+
+        var series =  [
+           {
+               name: '體溫/。C',
+               data: [
+
+                   @foreach (var row in query) {
+                            @(row.體溫+",")
+
+                               }
+
+
+
+               ]},
+
+          {
+              name: '血氧/SPO2',
+              data: [
+                  @foreach (var row in query) {
+                            @(row.血氧+",")
+                        }
+
+              ]
+          },
+          {
+              name: '體重/KG',
+              data: [
+              @foreach (var row in query) {
+                            @(row.體重+",")
+
+    } ]
+          },
+          {
+              name: '脈搏/m',
+              data: [
+              @foreach (var row in query) {
+                            @(row.脈搏+",")
+                        }
+     ]
+          }
+        ];
+        
+        var json = {};
+
+                   json.title = title;
+        json.subtitle = subtitle;
+        json.xAxis = xAxis;
+        json.yAxis = yAxis;
+        json.tooltip = tooltip;
+        json.legend = legend;
+        json.series = series;
+
+        $('#container').highcharts(json);
+    })
+                        </script>
+
+
                     </div>
                 </div>
             </div>

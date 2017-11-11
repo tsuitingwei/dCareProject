@@ -1,6 +1,9 @@
 ﻿@using dCareProject.Models;
-@model List<醫生>
-
+@model patient
+@{ 
+    GDManger gdm = new GDManger();
+    var query = gdm.getgdm;
+}
 <link href="~/Content/patient/css/metro.css" rel="stylesheet" />
 <script src="~/scripts/patient/js/jquery.js"></script>
 <script src="~/scripts/patient/js/select2.min.js"></script>
@@ -16,36 +19,48 @@
         <div class="app-bar">
             <span class="app-bar-divider"></span>
             <ul class="app-bar-menu">
-                <li><a href="index">回到首頁</a></li>
+                <li><a href="home">回到首頁</a></li>
             </ul>
         </div>
 
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <form method="post" action="">
+            <form id="form" method="post" action="">
+                
                 請選擇科別 :
-                <select id="select" style="font-size:24px;height:40px">
+                <select id="select" name="科別" style="font-size:24px;height:40px">
 
-                    <option>內科</option>
-                    <option>外科</option>
-                    <option>家醫科</option>
-                    <option>皮膚科</option>
+                    @foreach (patient row in ViewBag.name) {
+                        <option>@row.section</option>
+                    }
                  </select>
 
                 <br /><br />
 
-                請選擇日期 : <input id="thedate" type="text" style="width:160px" value="2017-11" /><br /><br />
-                請選擇時段 : <select id="select" style="font-size:24px;height:40px">
+                請選擇日期 : 
+                @foreach (patient row in ViewBag.name) {
+
+                <input id="thedate" type="text" name="登記時間" style="width:160px" value="@row.date" /><br /><br />
+                }
+                請選擇時段 : <select id="select" name="時段" style="font-size:24px;height:40px">
                                 <option>上午</option>
                                 <option>下午</option>
                              </select><br /><br />
 
-                請選擇醫生 : <select id="select" style="font-size:24px;height:40px">
-                    @foreach (醫生 row in Model) {
-                        <option>@row.姓名 @row.科別</option>
+                請選擇醫生 : <select id="select" name="醫生ID" style="font-size:24px;height:40px">
+                    @*@foreach (patient row in ViewBag.doc) {*@
+                        @*<option>@row.docname</option>*@
+                        <option value="7" @((query[0].ID== 7) ? "selected" : "")>楊元富</option>
+                        <option value="10" @((query[1].ID == 10) ? "selected" : "")>魏宏和</option>
+                     
                     }
 
                 </select><br /><br /><br />
+                @foreach (patient row in ViewBag.name) {
+                    <input  type="hidden" name="醫生ID" style="width:160px" value="@row.docid" />
+                    <input type="hidden" name="ID" style="width:160px" value="@row.reservationid"/>
+                }
+               
                 <input type="submit" value="確認送出" class="button info button rounded" data-role="popover" data-popover-mode="click" onclick="btnRedirection()"
                         data-popover-position="right" data-popover-text="已成功修改預約,請準時赴約 "
                         data-popover-background="bg-cyan" data-popover-color="fg-white" style="font-size:24px;height:40px;text-align:center"><br />

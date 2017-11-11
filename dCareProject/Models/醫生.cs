@@ -29,6 +29,7 @@ namespace dCareProject.Models
         public string 診所名稱 { get; set; }
         public string 診所地址 { get; set; }
         public string 服務時段 { get; set; }
+        public string 圖片 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<預約表> 預約表 { get; set; }

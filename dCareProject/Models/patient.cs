@@ -23,6 +23,19 @@ namespace dCareProject.Models {
         public string l1section { get; set; }
         public string doctorname { get; set; }
         public DateTime healthDate { get; set; }
+        public string daddress { get; set; }
+        public string daid { get; set; }
+        public int docid { get; set; }
+        public string img { get; set; }
+        public int reservationid { get; set; }
+        public int patientid1 { get; set; }
+        public DateTime reservationdate { get; set; }
+        public int 醫生ID { get; set; }
+        public float? temperture { get; set; }
+        public int? weigh { get; set; }
+        public int? jump { get; set; }
+        public int? spo2 { get; set; }
+
 
 
 

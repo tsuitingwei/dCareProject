@@ -65,4 +65,36 @@ namespace dCareProject.Models {
             }
         }
     }
+    public class LkManger {
+        dCareEntities db = new dCareEntities();
+        List<看診紀錄表> viewList = new List<看診紀錄表>();
+
+        public List<看診紀錄表> getlkm {
+            get {
+                var query = from o in db.看診紀錄表
+                            
+                           
+
+                            select o;
+
+                return query.ToList();
+            }
+        }
+    }
+    public class GDManger {
+        dCareEntities db = new dCareEntities();
+        List<醫生> viewList = new List<醫生>();
+
+        public List<醫生> getgdm {
+            get {
+                var query = from p in db.醫生
+                            where p.ID == 1 | p.ID == 3 | p.ID == 8 | p.ID == 9
+                            select p;
+
+                return query.ToList();
+            }
+        }
+    }
+
 }
+    

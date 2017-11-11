@@ -28,8 +28,7 @@ namespace dCareProject.Models
         public virtual DbSet<看診紀錄表> 看診紀錄表 { get; set; }
         public virtual DbSet<看診點> 看診點 { get; set; }
         public virtual DbSet<病人> 病人 { get; set; }
-        public virtual DbSet<預約表> 預約表 { get; set; }
         public virtual DbSet<醫生> 醫生 { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<預約表> 預約表 { get; set; }
     }
 }

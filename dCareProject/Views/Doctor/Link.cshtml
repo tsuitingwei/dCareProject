@@ -1,6 +1,11 @@
-﻿@{
+﻿@using dCareProject.Models
+
+
+@{  
+    ViewBag.Title ="Link";
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -16,92 +21,103 @@
 </head>
 
 <body>
-
-    <div class="container">
-        <div sytle="clear:both">
-            <!-----------------------bat-->
-            <div class="app-bar red">
-                <a class="app-bar-element branding" href="Index">dCare Doctor</a>
-                <span class="app-bar-divider"></span>
-                <ul class="app-bar-menu">
-                    <li><a href="">預約時間設定</a></li>
-                </ul>
-                <div class="app-bar-element place-right">
-                    <ul class="app-bar-menu"></ul>
-                </div>
-            </div>
-        </div>
-
-        <!--bar-end -->
-        <br>
-
-        <div class="row" style="clear:both">
-            <div class="col-6">
-                <h3>遠端畫面</h3>
-                <div data-role="preloader" data-type="cycle" data-style="color" id="loading" style="width: 480px; height: 400px;" class="preloader-cycle color-style"><div class="cycle"></div></div>
-                <iframe height="400" width="480" scrolling="no" src="http://10.2.1.203:8081"></iframe>
-            </div>
-
-            <div class="col-3">
-                <h3>就診紀錄</h3>
-                <select multiple="" class="form-control" style="height:400px" id="histSelect">
-                    <option id="data">2017/10/07</option>
-                    <option>2017/09/12</option>
-                </select>
-            </div>
-            <div class="rightbox col-3">
-                <div class="rightbox-top">
-                    <img src="~/img/陳歐太.jpg" alt="" class="img-rounded">
-                    <h5>病患資訊</h5>
-                    <h4 name="姓名">陳歐太</h4>
-                    <p name="出生年月日">1956/11/15</p>
-                   
-                    <dl>
-                        <dt>健檢資料</dt>
-                        <dd>身高:160</dd>
-                        <dd>體重:<span name="體重">65</span></dd>
-                        <dd>體溫:<span name="體溫">35.4</span></dd>
-                        <dd>脈搏:<span name="脈搏">78/bpm</span></dd>
-                        <dd>血氧:<span name="血氧">94％</span></dd>
-                        <dd>所在服務地:永和宮</dd>
-                        <dd>紀錄時間:<span name="健檢時間">94％</span></dd>
-                    </dl>
-
-
-
-                </div>
-                <hr />
-                <div class="rightbox-bottom">
-                   下次看診日期:
-                    <div class="input-control text" id="datepicker">
-                            <input type="text" name="登記日期">
-                        <button class="button"><span class="mif-automobile"></span></button>
+    <form method="post">
+        <div class="container">
+            <div sytle="clear:both">
+                <!-----------------------bat-->
+                <div class="app-bar red">
+                    <a class="app-bar-element branding" href="Index">dCare Doctor</a>
+                    <span class="app-bar-divider"></span>
+                    <ul class="app-bar-menu">
+                        <li><a href="">預約時間設定</a></li>
+                    </ul>
+                    <div class="app-bar-element place-right">
+                        <ul class="app-bar-menu"></ul>
                     </div>
-                    
-                    <button type="button" class="btn btn-primary btn-block" id="saveRecord" onclick="metroDialog.toggle('#saveDialog')">儲存紀錄</button>
-                    <button type="submit" value="ok" class="btn btn-default btn-block btn-danger"  id="submit">結束看診</button>
                 </div>
             </div>
 
-            <div class="col-9">
-                <h3>病歷資料 <button class="button info block-shadow-info text-shadow" id="CreateRecord">新增本次紀錄</button></h3>
+            <!--bar-end -->
+            <br>
+
+            <div class="row" style="clear:both">
+                <div class="col-6">
+                    <h3>遠端畫面</h3>
+                    <div data-role="preloader" data-type="cycle" data-style="color" id="loading" style="width: 480px; height: 400px;" class="preloader-cycle color-style"><div class="cycle"></div></div>
+                    <iframe height="400" width="480" scrolling="no" src="http://10.2.1.203:8081"></iframe>
+                </div>
+
+                <div class="col-3">
+                    <h3>就診紀錄</h3>
+                    <select multiple="" class="form-control" style="height:400px" id="histSelect">
+                        <option id="data">2017/10/07</option>
+                        <option>2017/09/12</option>
+                    </select>
+                </div>
+                <div class="rightbox col-3">
+                    <div class="rightbox-top">
+
+                        <div name="病人ID" class="hide">@ViewBag.data.pid</div>
+                        <img src="" alt="" class="img-rounded" id="photo">
+                        <h5>病患資訊</h5>
+                        <h4 name="姓名" id="name">@ViewBag.data.name</h4>
+                        <p name="出生年月日">1956/11/15</p>
+
+                        <dl>
+                            <dt>健檢資料</dt>
+                            <dd>身高:160</dd>
+                            <dd>體重:<span name="體重">@ViewBag.data.weight</span></dd>
+                            <dd>體溫:<span name="體溫">@ViewBag.data.temperature</span></dd>
+                            <dd>脈搏:<span name="脈搏">@ViewBag.data.pulse</span></dd>
+                            <dd>血氧:<span name="血氧">@ViewBag.data.blood</span></dd>
+                            <dd>所在服務地:永和宮</dd>
+                            <dd>紀錄時間:<span name="健檢時間">@ViewBag.data.time</span></dd>
+                        </dl>
+
+
+
+                    </div>
+                    <hr />
+                    <div class="rightbox-bottom">
+                        下次看診日期:
+                        <div class="input-control text" id="datepicker">
+                            <input type="text" name="登記日期">
+                            <button class="button"><span class="mif-automobile"></span></button>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-block" id="saveRecord" onclick="metroDialog.toggle('#saveDialog')">儲存紀錄</button>
+                        <button type="submit" value="ok" class="btn btn-default btn-block btn-danger" id="submit">結束看診</button>
+                    </div>
+                </div>
+
+                <div class="col-9">
+                    <h3>病歷資料 <button class="button info block-shadow-info text-shadow" id="CreateRecord">新增本次紀錄</button></h3>
                     <textarea class="form-control text-area col-md-12" rows="3" name="看診紀錄"></textarea>
-             </div>
+                </div>
+            </div>
         </div>
-    </div>
 
 
 
 
-    <div data-role="dialog" id="saveDialog" class="alert padding20 dialog" data-close-button="true" data-overlay="true" style="width: auto; height: auto; visibility: hidden; left: 360.5px; top: 437px;">
-        <h1>儲存記錄</h1>
-        <p>
-            已更新紀錄
-        </p>
-        <span class="dialog-close-button"></span><span class="dialog-close-button"></span>
-    </div>
+        <div data-role="dialog" id="saveDialog" class="alert padding20 dialog" data-close-button="true" data-overlay="true" style="width: auto; height: auto; visibility: hidden; left: 360.5px; top: 437px;">
+            <h1>儲存記錄</h1>
+            <p>
+                已更新紀錄
+            </p>
+            <span class="dialog-close-button"></span><span class="dialog-close-button"></span>
+        </div>
+    </form>
     
     <script>
+
+        var p = '@ViewBag.data.name';
+
+        $(document).ready(function () {
+            var name = p;
+            document.getElementById("photo").src = "/img/" + name.trim() + ".jpg"; 
+        })
+
         $("#idform").hide();
         // $("#loading").fadeOut(3000)
         $(document).ready(function () {
@@ -162,6 +178,9 @@
             alert("看診結束");
             document.location = '@Url.Action("Index","Doctor")';
         })
+
+
+
 
    </script>
 

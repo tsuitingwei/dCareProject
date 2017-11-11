@@ -8,13 +8,12 @@
         <EntityTypeShape EntityType="dCareModel.看診紀錄表" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dCareModel.看診點" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="dCareModel.病人" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dCareModel.預約表" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="dCareModel.醫生" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dCareModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="dCareModel.FK_預約表_看診紀錄表" ManuallyRouted="false" />
         <AssociationConnector Association="dCareModel.FK_病人_看診點" ManuallyRouted="false" />
-        <AssociationConnector Association="dCareModel.FK_預約表_病人1" ManuallyRouted="false" />
-        <AssociationConnector Association="dCareModel.FK_預約表_醫生" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dCareModel.預約表" Width="1.5" PointX="5.25" PointY="8.25" />
+        <AssociationConnector Association="dCareModel.FK_預約表_看診紀錄表" />
+        <AssociationConnector Association="dCareModel.FK_預約表_病人1" />
+        <AssociationConnector Association="dCareModel.FK_預約表_醫生" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

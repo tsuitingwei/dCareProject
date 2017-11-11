@@ -1,4 +1,11 @@
-﻿
+﻿@using dCareProject.Models
+@model patient
+@{ 
+//DodManger Dod = new DodManger();
+//var query = Dod.getDid;
+}
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <link href="~/Content/patient/css/metro.css" rel="stylesheet" />
 <link href="~/Content/patient/css/metro-icons.css" rel="stylesheet" />
@@ -32,7 +39,7 @@
             <div class="col-7">
                 <h3>遠端畫面</h3>
                     <div data-role="preloader" data-type="cycle" data-style="color" id="loading" style="width:480px;height:400px"></div>
-                    <iframe height="400" width="480" style="display:none" scrolling="no" id="frmVedio" src="http://10.2.1.203:8081"></iframe>
+                    <iframe height="400" width="480" style="display:none" scrolling="no" id="frmVedio" src="http://10.211.55.4:86"></iframe>
             </div>
 
             <div class="col-2">
@@ -40,23 +47,26 @@
             <div class="rightbox col-3">
                 <div class="rightbox-top">
                    
-                    <img src="~/img/lai.jpg" alt="" class="img-rounded">
-                    <h5>醫生資訊</h5>
-                    <h4>魏宏和  &nbsp&nbsp&nbsp&nbsp<span class="mif-user-md" style="color:green">上線中</span></h4>
+                    
+                    
+                    @foreach (patient row in ViewBag.name) {
+                        <img src = "@row.img" style="height:270px;width:220px"/>
+                        
+                        <h4>醫生資訊</h4>
+                        <h4>@row.doctor<span class="mif-user-md" style="color:green">上線中</span></h4>
                     <hr>
                     <dl>
-                      <dt>診所資料</dt>
-                      <dd>科別:內科</dd>
-                      <dd>所在地:台中</dd>
-                      <dd>診所名稱:來來診所</dd>
-                      <dd>地址:台中市公益路二段1555號</dd>
-                      <dd>指定醫生</dd>
-                    </dl>
+                      <dt>@row.address</dt>
+                      <dd>@row.section</dd>
+                      <dd>@row.daid</dd>
+                        <dd>@row.daddress</dd>
+                       
+                    </dl> }
                 </div>
 
                 <div class="rightbox-bottom">
                     <button type="button" class="button loading-pulse lighten primary btn-block" id="saveRecord" sytle="font-size:30px" onclick="startView()">開始視訊</button>
-                    <button type="button" class="btn btn-default btn-block" onclick="">結束看診</button>
+                    <button type="button" class="btn btn-default btn-block" onclick="redirect()">結束看診</button>
                 </div>
             </div>
         </div>
@@ -86,6 +96,9 @@
 			}, 1400);
         }
 
+         function redirect() {
+                window.location.href = 'login';
+                            }
     </script>
 
 

@@ -41,22 +41,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="預約表">
-      <EntityTypeMapping TypeName="dCareModel.預約表">
-        <MappingFragment StoreEntitySet="預約表">
-          <ScalarProperty Name="報到結果" ColumnName="報到結果" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="病人ID" ColumnName="病人ID" />
-          <ScalarProperty Name="醫生ID" ColumnName="醫生ID" />
-          <ScalarProperty Name="看診紀錄表ID" ColumnName="看診紀錄表ID" />
-          <ScalarProperty Name="登記時間" ColumnName="登記時間" />
-          <ScalarProperty Name="預約結果" ColumnName="預約結果" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="醫生">
       <EntityTypeMapping TypeName="dCareModel.醫生">
         <MappingFragment StoreEntitySet="醫生">
+          <ScalarProperty Name="圖片" ColumnName="圖片" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="帳號" ColumnName="帳號" />
           <ScalarProperty Name="密碼" ColumnName="密碼" />
@@ -69,14 +57,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="dCareModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
+    <EntitySetMapping Name="預約表">
+      <EntityTypeMapping TypeName="dCareModel.預約表">
+        <MappingFragment StoreEntitySet="預約表">
+          <ScalarProperty Name="報到結果" ColumnName="報到結果" />
+          <ScalarProperty Name="看診結果" ColumnName="看診結果" />
+          <ScalarProperty Name="登記時間" ColumnName="登記時間" />
+          <ScalarProperty Name="看診紀錄表ID" ColumnName="看診紀錄表ID" />
+          <ScalarProperty Name="醫生ID" ColumnName="醫生ID" />
+          <ScalarProperty Name="病人ID" ColumnName="病人ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

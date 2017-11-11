@@ -5,14 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using dCareProject.Models;
 
-namespace dCareProject.Controllers
-{
-    public class PatientloginController : Controller
-    {
+namespace dCareProject.Controllers {
+    public class PatientloginController : Controller {
         private dCareEntities db = new dCareEntities();
         // GET: Patientlogin
-        public ActionResult login()
-        {
+        public ActionResult login() {
             return View();
         }
         public ActionResult patientreservation() {
@@ -34,23 +31,49 @@ namespace dCareProject.Controllers
                             addressID = c.看診點ID.Value,
                             healthDate = d.健檢時間,
                             patientid = o.ID
-                            
-                           
+
+
 
                         };
             ViewBag.name = query.ToList();
- 
+
             return View();
-            
-    }
-        public ActionResult look1() {
-            var query = from o in db.醫生
+
+        }
+        public ActionResult look1(int id) {
+            var query = from p in db.醫生
+                        join o in db.預約表 on p.ID equals o.醫生ID
+                        where o.ID == id
+                        select new patient {
+                            reservationid = o.ID,
+                            date = o.登記時間.Value,
+                            docid = p.ID,
+                            section = p.科別,
+                            docname = p.姓名
+                        };
+            ViewBag.name = query.ToList();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult look1(int id, 預約表 viewData) {
+
+            預約表 dbData = db.預約表.Find(id);
+
+            var temp = dbData;
 
 
-                        select o;
+            dbData.醫生ID = viewData.醫生ID;
+            dbData.登記時間 = viewData.登記時間;
+
             //System.Threading.Thread.Sleep(3000);
-            //return RedirectToAction("patientreservation", "Patientlogin");
-            return View(query.ToList());
+            db.SaveChanges();
+
+
+
+            return RedirectToAction("look", "Patient");
         }
     }
-}
+
+    }
+        
+    

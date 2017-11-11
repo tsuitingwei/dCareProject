@@ -10,7 +10,7 @@ namespace dCareProject.Controllers {
         DBManager dbm = new DBManager();
         private dCareEntities db = new dCareEntities();
         // GET: Patient
-        public ActionResult Index() {
+        public ActionResult home() {
             return View();
         }
         
@@ -39,7 +39,7 @@ namespace dCareProject.Controllers {
             db.SaveChanges();
 
             System.Threading.Thread.Sleep(3000);
-            return RedirectToAction("index", "Patient");
+            return RedirectToAction("home", "Patient");
             //return View();
           
         }
@@ -69,7 +69,7 @@ namespace dCareProject.Controllers {
 
 
             System.Threading.Thread.Sleep(3000);
-            return RedirectToAction("index", "Patient");
+            return RedirectToAction("home", "Patient");
         }
 
 
@@ -79,34 +79,56 @@ namespace dCareProject.Controllers {
             var query = from o in db.預約表
                         join p in db.醫生 on o.醫生ID equals p.ID
                         join c in db.看診紀錄表 on o.看診紀錄表ID equals c.ID
+                      
                         where o.病人ID == 3
                         select new patient {
                             section = p.科別,
                             date = o.登記時間.Value,
                             doctor = p.姓名,
                             healhdate = c.健檢時間,
-                            patientid = o.ID
+                            patientid = o.ID,
+                            temperture = c.體溫,
+                            weigh =c.體重,
+                            jump = c.脈搏,
+                            spo2 =c.血氧
                                                     };
                         ViewBag.name = query.ToList();
                         return View();
         }
         
-         public ActionResult look1() {
-            var query = from o in db.醫生
-                         
-                         select o;
-            //醫生 viewData = query.SingleOrDefault();
-            //return View(viewData);
-            return View(query.ToList());
+         public ActionResult look1(int id) {
+            var query = from p in db.醫生
+                        join o in db.預約表 on p.ID equals o.醫生ID
+                        where o.ID==id
+                           select new patient {
+                            reservationid = o.ID,
+                            date = o.登記時間.Value,
+                            docid = p.ID,
+                            section = p.科別,
+                            docname =p.姓名
+                        };
+            ViewBag.name = query.ToList();
+               return View();
         }
-        //[HttpPost]
-        //public ActionResult look1(int id) {
+        [HttpPost]
+        public ActionResult look1(int id, 預約表 viewData) {
+
+            預約表 dbData = db.預約表.Find(id);
+
+            var temp = dbData;
 
 
-        //    System.Threading.Thread.Sleep(3000);
-        //    return RedirectToAction("patientreservation", "Patient");
-        //    //return View();
-        //}
+            dbData.醫生ID = viewData.醫生ID;
+            dbData.登記時間 = viewData.登記時間;
+
+            //System.Threading.Thread.Sleep(3000);
+            db.SaveChanges();
+
+
+            
+            return RedirectToAction("look", "Patient");
+        }
+        
 
         public ActionResult patientview() {
             return View();

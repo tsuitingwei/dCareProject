@@ -32,49 +32,34 @@ namespace dCareProject.Controllers
                              gender = o.性別,
                              phone = o.電話,
                              pid = o.ID,
-                             birth = o.出生年月日
+                             birth = o.出生年月日,
+                             linkid = c.看診紀錄表ID.Value
                          }).ToList();
 
             ViewBag.name = query;
+            Session["patName"] = query[0].name;
 
             return View();
         }
-
-        [HttpPost]
-        public ActionResult Index(看診紀錄表 data)
-        {
-            var query = from o in db.看診紀錄表
-                        join c in db.預約表 on o.ID equals c.看診紀錄表ID
-                        join p in db.病人 on c.病人ID equals p.ID
-                        where p.ID == 3
-                        select o;
-
-                      
-            
-
-
-            return RedirectToAction("Link", "Doctor");
-        }
-
-
 
         public ActionResult Login()
         {
             return View();
         }
 
-
-        public ActionResult Link()
+        public ActionResult Link(int id)
         {
-            var query = (from p in db.看診紀錄表
-                         join c in db.病人 on p.ID equals c.ID
-                         join o in db.預約表 on p.ID equals o.看診紀錄表ID
-                         where o.登記時間 >= new DateTime()
 
+            var temp = id;
+
+            var query = (from p in db.看診紀錄表
+                         join o in db.預約表 on p.ID equals o.看診紀錄表ID
+                         join c in db.病人 on o.病人ID equals c.ID
+                         where p.ID == temp 
                          select new linkdata
                          {
                              id = p.ID,
-                             pid = c.ID,
+                             pid = o.病人ID.Value,
                              name = c.姓名,
                              weight = p.體重.Value,
                              temperature = p.體溫.Value,
@@ -83,28 +68,30 @@ namespace dCareProject.Controllers
                              time = p.健檢時間,
                              record = p.看診紀錄
 
-                         }).First();
+                         }).ToList().Last();
 
             ViewBag.data = query;
-
             return View();
         }
 
         [HttpPost]
-        public ActionResult Link(看診紀錄表 data)
+
+        public ActionResult Link(int id ,看診紀錄表 viewdata, 預約表 data)
         {
-            預約表 c = new 預約表();
-                c.病人ID = 3;
-                c.醫生ID = 10;
-                c.登記時間 = new DateTime();
-                c.預約結果 = "預約成功";
-                db.預約表.Add(c);
+            看診紀錄表 dbData = db.看診紀錄表.Find(id);
+            dbData.看診紀錄 = viewdata.看診紀錄;
+           
+            var a = new 預約表();
+            a.病人ID = data.病人ID;
+            a.醫生ID = 10;
+            a.登記時間 = data.登記時間;
+            db.預約表.Add(a);
 
-            db.看診紀錄表.Add(data);
             db.SaveChanges();
-
-            return RedirectToAction ( "Index", "Doctor");
+            return RedirectToAction("Index", "Doctor");
         }
+
+
 
         public ActionResult History()
         {
@@ -120,7 +107,6 @@ namespace dCareProject.Controllers
                             pid = c.ID
                             
                         };
-
 
             ViewBag.name = query;
             return View();

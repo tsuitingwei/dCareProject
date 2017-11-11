@@ -5,20 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="dCareModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'dCare1.dbo.sysdiagrams' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="name" />
-            <PropertyRef Name="principal_id" />
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="看診紀錄表">
           <Key>
             <PropertyRef Name="ID" />
@@ -65,7 +51,7 @@
           <Property Name="醫生ID" Type="int" />
           <Property Name="看診紀錄表ID" Type="int" />
           <Property Name="登記時間" Type="datetime" />
-          <Property Name="預約結果" Type="nchar" MaxLength="10" />
+          <Property Name="看診結果" Type="nchar" MaxLength="10" />
           <Property Name="報到結果" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="醫生">
@@ -81,6 +67,7 @@
           <Property Name="診所名稱" Type="nchar" MaxLength="20" />
           <Property Name="診所地址" Type="nchar" MaxLength="60" />
           <Property Name="服務時段" Type="varchar(max)" />
+          <Property Name="圖片" Type="nchar" MaxLength="12" />
         </EntityType>
         <Association Name="FK_病人_看診點">
           <End Role="看診點" Type="Self.看診點" Multiplicity="0..1" />
@@ -136,15 +123,6 @@
           <EntitySet Name="病人" EntityType="Self.病人" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="預約表" EntityType="Self.預約表" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="醫生" EntityType="Self.醫生" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [sysdiagrams].[name] AS [name], 
-    [sysdiagrams].[principal_id] AS [principal_id], 
-    [sysdiagrams].[diagram_id] AS [diagram_id], 
-    [sysdiagrams].[version] AS [version], 
-    [sysdiagrams].[definition] AS [definition]
-    FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_病人_看診點" Association="Self.FK_病人_看診點">
             <End Role="看診點" EntitySet="看診點" />
             <End Role="病人" EntitySet="病人" />
@@ -178,7 +156,7 @@
           <Property Name="健檢時間" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="看診紀錄" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="用藥紀錄" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="預約表" Relationship="Self.FK_預約表_看診紀錄表" FromRole="看診紀錄表" ToRole="預約表" />
+          <NavigationProperty Name="預約表" Relationship="dCareModel.FK_預約表_看診紀錄表" FromRole="看診紀錄表" ToRole="預約表" />
         </EntityType>
         <EntityType Name="看診點">
           <Key>
@@ -204,23 +182,8 @@
           <Property Name="電話" Type="String" MaxLength="26" FixedLength="true" Unicode="false" />
           <Property Name="看診點ID" Type="Int32" />
           <NavigationProperty Name="看診點" Relationship="Self.FK_病人_看診點" FromRole="病人" ToRole="看診點" />
-          <NavigationProperty Name="預約表" Relationship="Self.FK_預約表_病人1" FromRole="病人" ToRole="預約表" />
           <Property Name="卡號" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="預約表">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="病人ID" Type="Int32" />
-          <Property Name="醫生ID" Type="Int32" />
-          <Property Name="看診紀錄表ID" Type="Int32" />
-          <Property Name="登記時間" Type="DateTime" Precision="3" />
-          <Property Name="預約結果" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="看診紀錄表" Relationship="Self.FK_預約表_看診紀錄表" FromRole="預約表" ToRole="看診紀錄表" />
-          <NavigationProperty Name="病人" Relationship="Self.FK_預約表_病人1" FromRole="預約表" ToRole="病人" />
-          <NavigationProperty Name="醫生" Relationship="Self.FK_預約表_醫生" FromRole="預約表" ToRole="醫生" />
-          <Property Name="報到結果" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="預約表" Relationship="dCareModel.FK_預約表_病人1" FromRole="病人" ToRole="預約表" />
         </EntityType>
         <EntityType Name="醫生">
           <Key>
@@ -235,32 +198,9 @@
           <Property Name="診所名稱" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="診所地址" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
           <Property Name="服務時段" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="預約表" Relationship="Self.FK_預約表_醫生" FromRole="醫生" ToRole="預約表" />
+          <Property Name="圖片" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="預約表" Relationship="dCareModel.FK_預約表_醫生" FromRole="醫生" ToRole="預約表" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="name" />
-            <PropertyRef Name="principal_id" />
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_預約表_看診紀錄表">
-          <End Role="看診紀錄表" Type="Self.看診紀錄表" Multiplicity="0..1" />
-          <End Role="預約表" Type="Self.預約表" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="看診紀錄表">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="預約表">
-              <PropertyRef Name="看診紀錄表ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_病人_看診點">
           <End Role="看診點" Type="Self.看診點" Multiplicity="0..1" />
           <End Role="病人" Type="Self.病人" Multiplicity="*" />
@@ -273,9 +213,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="dCareEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="看診紀錄表" EntityType="Self.看診紀錄表" />
+          <EntitySet Name="看診點" EntityType="Self.看診點" />
+          <EntitySet Name="病人" EntityType="Self.病人" />
+          <EntitySet Name="醫生" EntityType="Self.醫生" />
+          <AssociationSet Name="FK_病人_看診點" Association="Self.FK_病人_看診點">
+            <End Role="看診點" EntitySet="看診點" />
+            <End Role="病人" EntitySet="病人" />
+          </AssociationSet>
+          <EntitySet Name="預約表" EntityType="dCareModel.預約表" />
+          <AssociationSet Name="FK_預約表_看診紀錄表" Association="dCareModel.FK_預約表_看診紀錄表">
+            <End Role="看診紀錄表" EntitySet="看診紀錄表" />
+            <End Role="預約表" EntitySet="預約表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_預約表_病人1" Association="dCareModel.FK_預約表_病人1">
+            <End Role="病人" EntitySet="病人" />
+            <End Role="預約表" EntitySet="預約表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_預約表_醫生" Association="dCareModel.FK_預約表_醫生">
+            <End Role="醫生" EntitySet="醫生" />
+            <End Role="預約表" EntitySet="預約表" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="預約表">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="病人ID" Type="Int32" />
+          <Property Name="醫生ID" Type="Int32" />
+          <Property Name="看診紀錄表ID" Type="Int32" />
+          <Property Name="登記時間" Type="DateTime" Precision="3" />
+          <Property Name="看診結果" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="報到結果" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="看診紀錄表" Relationship="dCareModel.FK_預約表_看診紀錄表" FromRole="預約表" ToRole="看診紀錄表" />
+          <NavigationProperty Name="病人" Relationship="dCareModel.FK_預約表_病人1" FromRole="預約表" ToRole="病人" />
+          <NavigationProperty Name="醫生" Relationship="dCareModel.FK_預約表_醫生" FromRole="預約表" ToRole="醫生" />
+        </EntityType>
+        <Association Name="FK_預約表_看診紀錄表">
+          <End Type="dCareModel.看診紀錄表" Role="看診紀錄表" Multiplicity="0..1" />
+          <End Type="dCareModel.預約表" Role="預約表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="看診紀錄表">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="預約表">
+              <PropertyRef Name="看診紀錄表ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_預約表_病人1">
-          <End Role="病人" Type="Self.病人" Multiplicity="0..1" />
-          <End Role="預約表" Type="Self.預約表" Multiplicity="*" />
+          <End Type="dCareModel.病人" Role="病人" Multiplicity="0..1" />
+          <End Type="dCareModel.預約表" Role="預約表" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="病人">
               <PropertyRef Name="ID" />
@@ -286,8 +276,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_預約表_醫生">
-          <End Role="醫生" Type="Self.醫生" Multiplicity="0..1" />
-          <End Role="預約表" Type="Self.預約表" Multiplicity="*" />
+          <End Type="dCareModel.醫生" Role="醫生" Multiplicity="0..1" />
+          <End Type="dCareModel.預約表" Role="預約表" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="醫生">
               <PropertyRef Name="ID" />
@@ -297,30 +287,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dCareEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="看診紀錄表" EntityType="Self.看診紀錄表" />
-          <EntitySet Name="看診點" EntityType="Self.看診點" />
-          <EntitySet Name="病人" EntityType="Self.病人" />
-          <EntitySet Name="預約表" EntityType="Self.預約表" />
-          <EntitySet Name="醫生" EntityType="Self.醫生" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <AssociationSet Name="FK_預約表_看診紀錄表" Association="Self.FK_預約表_看診紀錄表">
-            <End Role="看診紀錄表" EntitySet="看診紀錄表" />
-            <End Role="預約表" EntitySet="預約表" />
-          </AssociationSet>
-          <AssociationSet Name="FK_病人_看診點" Association="Self.FK_病人_看診點">
-            <End Role="看診點" EntitySet="看診點" />
-            <End Role="病人" EntitySet="病人" />
-          </AssociationSet>
-          <AssociationSet Name="FK_預約表_病人1" Association="Self.FK_預約表_病人1">
-            <End Role="病人" EntitySet="病人" />
-            <End Role="預約表" EntitySet="預約表" />
-          </AssociationSet>
-          <AssociationSet Name="FK_預約表_醫生" Association="Self.FK_預約表_醫生">
-            <End Role="醫生" EntitySet="醫生" />
-            <End Role="預約表" EntitySet="預約表" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -367,22 +333,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="預約表">
-            <EntityTypeMapping TypeName="dCareModel.預約表">
-              <MappingFragment StoreEntitySet="預約表">
-                <ScalarProperty Name="報到結果" ColumnName="報到結果" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="病人ID" ColumnName="病人ID" />
-                <ScalarProperty Name="醫生ID" ColumnName="醫生ID" />
-                <ScalarProperty Name="看診紀錄表ID" ColumnName="看診紀錄表ID" />
-                <ScalarProperty Name="登記時間" ColumnName="登記時間" />
-                <ScalarProperty Name="預約結果" ColumnName="預約結果" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="醫生">
             <EntityTypeMapping TypeName="dCareModel.醫生">
               <MappingFragment StoreEntitySet="醫生">
+                <ScalarProperty Name="圖片" ColumnName="圖片" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="帳號" ColumnName="帳號" />
                 <ScalarProperty Name="密碼" ColumnName="密碼" />
@@ -395,14 +349,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="dCareModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
+          <EntitySetMapping Name="預約表">
+            <EntityTypeMapping TypeName="dCareModel.預約表">
+              <MappingFragment StoreEntitySet="預約表">
+                <ScalarProperty Name="報到結果" ColumnName="報到結果" />
+                <ScalarProperty Name="看診結果" ColumnName="看診結果" />
+                <ScalarProperty Name="登記時間" ColumnName="登記時間" />
+                <ScalarProperty Name="看診紀錄表ID" ColumnName="看診紀錄表ID" />
+                <ScalarProperty Name="醫生ID" ColumnName="醫生ID" />
+                <ScalarProperty Name="病人ID" ColumnName="病人ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

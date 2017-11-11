@@ -1,16 +1,29 @@
 ﻿@using dCareProject.Models;
 @model patient
+@{
+    LkManger lkm = new LkManger();
+    var query = lkm.getlkm;
+}
 
 
+<meta charset="UTF-8" />
+
+<script src="~/scripts/patient/js/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 <link href="~/Content/patient/css/metro.css" rel="stylesheet" />
 <link href="~/Content/patient/css/metro-icons.css" rel="stylesheet" />
 <script src="~/scripts/patient/js/jquery-ui.min.js"></script>
-<script src="~/scripts/patient/js/jquery.min.js"></script>
 <script src="~/scripts/patient/js/metro.js"></script>
 <link href="~/Content/patient/css/jquery-ui.css" rel="stylesheet" />
 <link href="~/Content/patient/css/jquery.dataTables.css" rel="stylesheet" />
 <script src="~/scripts/patient/js/jquery.dataTables.min.js"></script>
 <link href="~/Content/patient/css/bootstrap.css" rel="stylesheet" />
+
+
+
+
+
 <body style="font-family:微軟正黑體">
     <div class="container">
         <div class="app-bar red">
@@ -32,15 +45,14 @@
                     <div class="rightbox-top">
                         <img src="~/img/yan.jpg" class="img-rounded" style="height:170px;width:150px">
                         <hr />
-                        
+
                         <h2>個人資料</h2>
-                       
+
                         <h4>姓名:陳歐太<span class="mif-venus fg-pink"></span></h4>
-                        <h4>科別:內科</h4>
                         <h4>出生年月日:1957/10/15</h4>
                         <h4>電話:0976952011</h4>
                         <h4>地址:苗栗縣苗栗市</h4>
-                        
+
                     </div>
 
 
@@ -52,6 +64,7 @@
 
                         <li><a href="#frame_1" style="font-size:20px">修改預約</a></li>
                         <li><a href="#frame_2" style="font-size:20px">看診紀錄</a></li>
+                        <li><a href="#frame_3" style="font-size:20px">紀錄圖表</a></li>
                     </ul>
                     <div class="frames">
 
@@ -65,7 +78,7 @@
                                         <th>修改預約</th>
                                     </tr>
                                 </thead>
-                               
+
                                 <tbody>
                                     @foreach (patient row in ViewBag.name) {
                                         <tr>
@@ -75,7 +88,7 @@
                                             <td><a href="look1/@row.patientid">修改預約</a></td>
                                         </tr>
                                     }
-                                    
+
 
 
 
@@ -111,12 +124,110 @@
 
                             </table>
                         </div>
+                        <div class="frame" id="frame_3">
+                            <div id="container" style="width:700px; height: 400px; margin: 0 auto"></div>
+                            <script language="JavaScript">
+    $(document).ready(function() {
+        var title = {
+            text: 'dCare 健檢紀錄'
+        };
+        var subtitle = {
+            text: ''
+        };
+        var xAxis = {
+            categories: [@foreach (var row in query) {
+                            @(row.用藥紀錄+",")
+
+            }
+
+
+
+
+            ]
+        };
+        var yAxis = {
+            title: {
+                text: ''
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        };
+
+        var tooltip = {
+            valueSuffix: ''
+        }
+
+        var legend = {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        };
+
+        var series =  [
+           {
+               name: '體溫/。C',
+               data: [
+
+                   @foreach (var row in query) {
+                            @(row.體溫+",")
+
+                               }
+
+
+
+               ]},
+
+          {
+              name: '血氧/SPO2',
+              data: [
+                  @foreach (var row in query) {
+                            @(row.血氧+",")
+                        }
+
+              ]
+          },
+          {
+              name: '體重/KG',
+              data: [
+              @foreach (var row in query) {
+                            @(row.體重+",")
+
+    } ]
+          },
+          {
+              name: '脈搏/m',
+              data: [
+              @foreach (var row in query) {
+                            @(row.脈搏+",")
+                        }
+     ]
+          }
+        ];
+
+        var json = {};
+
+                   json.title = title;
+        json.subtitle = subtitle;
+        json.xAxis = xAxis;
+        json.yAxis = yAxis;
+        json.tooltip = tooltip;
+        json.legend = legend;
+        json.series = series;
+
+        $('#container').highcharts(json);
+    })
+                            </script>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
-    </div>
-
-    </div>
-
+        </div>
+        </div>
 </body>
 
