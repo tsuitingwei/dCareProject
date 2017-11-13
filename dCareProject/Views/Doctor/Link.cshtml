@@ -44,7 +44,14 @@
                 <div class="col-6">
                     <h3 style="font-family:'微軟正黑體'">遠端畫面</h3>
                     <div data-role="preloader" data-type="cycle" data-style="color" id="loading" style="width: 480px; height: 400px;" class="preloader-cycle color-style"><div class="cycle"></div></div>
-                    <iframe height="400" width="480" scrolling="no" src="http://10.2.1.203:8081"></iframe>
+                    <div id="frmVedio" style="display:inline">
+                        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="480" height="385">
+                            <param name="movie" value="http://10.211.55.4:86//nchplayer.swf?host=10.2.1.120:1935&scope=BroadCam&streamName=live&bandwidth=1&src=1&autostart=true&redirect=&textOnOver=">
+                            <param name="allowfullscreen" value="true">
+                            <param name="quality" value="high">
+                            <embed src="http://10.211.55.4:86/nchplayer.swf?host=10.211.55.4:1935&scope=BroadCam&streamName=live&bandwidth=1&src=1&autostart=true&redirect=&textOnOver=" width="480" height="385" allowfullscreen="true" quality="high" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer" />
+                        </object>
+                    </div>
                 </div>
 
                 <div class="col-3">
@@ -57,7 +64,7 @@
                 <div class="rightbox col-3">
                     <div class="rightbox-top">
 
-                        <div name="病人ID" class="hide">@ViewBag.data.pid</div>
+                        @*<div name="病人ID" class="hide">@ViewBag.data.pid</div>*@
                         <img src="" alt="" class="img-rounded" id="photo">
                         <h5 style="font-family:'微軟正黑體'">病患資訊</h5>
                         <h4 name="姓名" id="name">@ViewBag.data.name</h4>
@@ -65,11 +72,11 @@
 
                         <dl>
                             <dt style="font-family:'微軟正黑體'">健檢資料</dt>
-                            <dd>身高:160</dd>
-                            <dd>體重:<span name="體重">@ViewBag.data.weight</span></dd>
-                            <dd>體溫:<span name="體溫">@ViewBag.data.temperature</span></dd>
-                            <dd>脈搏:<span name="脈搏">@ViewBag.data.pulse</span></dd>
-                            <dd>血氧:<span name="血氧">@ViewBag.data.blood</span></dd>
+                            <dd>身高:160 cm</dd>
+                            <dd>體重:<span name="體重">@ViewBag.data.weight kg</span></dd>
+                            <dd>體溫:<span name="體溫">@ViewBag.data.temperature ℃</span></dd>
+                            <dd>脈搏:<span name="脈搏">@ViewBag.data.pulse bpm</span></dd>
+                            <dd>血氧:<span name="血氧">@ViewBag.data.blood %</span></dd>
                             <dd>所在服務地:永和宮</dd>
                             <dd>紀錄時間:<span name="健檢時間">@ViewBag.data.time</span></dd>
                         </dl>
@@ -82,7 +89,7 @@
                         下次看診日期:
                         <div class="input-control text" id="datepicker">
                             <input type="text" name="登記日期">
-                            <button class="button"><span class="mif-automobile"></span></button>
+                            <button class="button"><span class="mif-calendar"></span></button>
                         </div>
 
                         <button type="button" class="btn btn-primary btn-block" id="saveRecord" onclick="metroDialog.toggle('#saveDialog')">儲存紀錄</button>
@@ -97,9 +104,6 @@
             </div>
         </div>
 
-
-
-
         <div data-role="dialog" id="saveDialog" class="alert padding20 dialog" data-close-button="true" data-overlay="true" style="width: auto; height: auto; visibility: hidden; left: 360.5px; top: 437px;">
             <h1>儲存記錄</h1>
             <p>
@@ -110,23 +114,19 @@
     </form>
     
     <script>
-
         var p = '@ViewBag.data.name';
-
         $(document).ready(function () {
             var name = p;
             document.getElementById("photo").src = "/img/" + name.trim() + ".jpg"; 
         })
 
         $("#idform").hide();
-        // $("#loading").fadeOut(3000)
         $(document).ready(function () {
             setTimeout(function () {
                 $("#loading").css("display", "none");
             }, 1400);
             $("#submit").hide();
         })
-        // $("#histSelect").append('<option>2017/10/23</option>');
 
         $("#CreateRecord").click(function () {
             var today = new Date();
@@ -135,7 +135,7 @@
             (today.getMonth() + 1) + '/' +
             today.getDate() + ',' +
             today.getHours() + ':' + today.getMinutes();
-            $("textarea").text("看診日期:" + currentDateTime + ' , ' + "看診醫師:卓清澤 \n病歷紀錄:\n");
+            $("textarea").text("看診日期:" + currentDateTime + ' , ' + "看診醫師:魏宏和 \n病歷紀錄:\n");
         })
 
 
@@ -143,7 +143,6 @@
             var today = new Date();
             var currentDateTime =
             today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
-            // var foo = $('#multiple').val();
             $('#histSelect')
                 .find('option')
                 .remove()
@@ -159,7 +158,10 @@
             var currentDateTime =
                 today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
             if (confirm('確認要歷史紀錄嗎？ 目前記錄會清空') == true){
-                $("textarea").text("看診日期:" + currentDateTime  +",看診醫師:李承恩\n病歷紀錄:\n" + "Contrary to popular belief, is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H.Rackham.");
+                $("textarea").text("看診日期:"
+                    + currentDateTime
+                    + ",看診醫師:魏宏和\n病歷紀錄:\n"
+                    + "Contrary to popular belief, is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H.Rackham.");
             }
         })
 

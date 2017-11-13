@@ -1,27 +1,31 @@
 ﻿@using dCareProject.Models
+@{
+    ViewBag.Title = "HIDLogin";
+    Layout = "~/Views/Shared/_autoreload.cshtml";
+}
+
+<script language="javascript">
+    window.onload = init
+    function init(){
+        setTimeout("location.href=''", 1000);
+    }
+</script>
 
 <head>
-
-    <link href="~/Content/patient/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/patient/css/metro.css" rel="stylesheet" />
-    <script src="~/scripts/patient/js/jquery.js"></script>
     <style type="text/css">
         .container {
             text-align: center;
-            /*margin-top:70px;*/
         }
-
         .main {
             margin-top: 70px;
         }
-
         .quit {
             margin-top: 23px;
         }
     </style>
 
 
-</head>   
+</head>
 <body style="font-family:微軟正黑體">
     <div class="container">
         <div class="row">
@@ -29,38 +33,37 @@
                 <div class="app-bar">
                     <span class="app-bar-divider"></span>
                     <ul class="app-bar-menu">
-                        <li><a href="/Patient/home">Home</a></li>
+                        <li><a href="">Home</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-               
-                    <input type="submit" class="button info button rounded" name="health" style="height:300px;width:100%;font-size:40px" onclick="redirect()" value="開始健康量測">
-                    <input type="submit" class="button info button rounded" name="modify" style="height:300px;width:100%;font-size:40px" onclick="redirect1()" value="修改預約">
-                
-                     </div>
+                <button class="button success button rounded" style="height:600px;width:100%;font-size:40px">請刷卡登入</button>
+                @*<button class="button info button rounded" id="health" style="height:300px;width:100%;" onclick="redirect()"><a style="font-size:40px">開始健康量測</a></button>
+                <button class="button info button rounded" id="modify" style="height:300px;width:100%;" onclick="redirect1()"><a style="font-size:40px">修改預約</a></button>*@
+            </div>
 
             <div class="col-md-6">
-                <a style="color:red;font-size:60px"><b>目前看診:64</b></a><br>
+                <a style="color:red;font-size:60px"><b>目前看診:53</b></a><br>
                 <br>
                 <a style="font-size:40px"><b>候診名單</b></a><br>
                 <table class="table table-hover" style="font-size:30px">
-                    @foreach (patient row in ViewBag.Board) {
-                        <tr>
-                            <td>@row.ID</td>
-                            <td>@row.name</td>
-                        </tr>
-                    }
+                @foreach (patient row in ViewBag.Board) {
+                    <tr>
+                        <td>@row.ID</td>
+                        <td>@row.name</td>
+                    </tr>
+                }
                 </table>
-                
+
             </div>
         </div>
-    </div> 
-   
-    
-   
+    </div>
+
+
+
     <script>
         function redirect() {
             window.location.href = 'step1';
@@ -70,4 +73,4 @@
         }
     </script>
 
-   </body>
+</body>

@@ -193,6 +193,7 @@
     <Content Include="Content\doctor\css\metro-responsive.css" />
     <Content Include="Content\doctor\css\metro.css" />
     <Content Include="Content\doctor\css\view.css" />
+    <Content Include="Content\doctor\fonts\metro.svg" />
     <Content Include="Content\doctor\js\jquery.js" />
     <Content Include="Content\doctor\js\metro.js" />
     <Content Include="Content\home\dCare.css" />
@@ -229,6 +230,14 @@
     <Content Include="img\john.jpg" />
     <Content Include="img\lai.jpg" />
     <Content Include="img\yan.jpg" />
+    <Content Include="img\傅學煥.jpg" />
+    <Content Include="img\劉品德.jpg" />
+    <Content Include="img\鍾惠晴.jpg" />
+    <Content Include="img\陳伯彥.jpg" />
+    <Content Include="img\陳鑫益.jpg" />
+    <Content Include="img\黃真新.jpg" />
+    <Content Include="img\黃立峰.jpg" />
+    <Content Include="img\黃美麗.jpg" />
     <Content Include="Models\dCareModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dCareModel.edmx</DependentUpon>
@@ -264,6 +273,10 @@
     <Content Include="Content\home\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\home\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\home\fonts\FontAwesome.otf" />
+    <Content Include="Content\doctor\fonts\metro.eot" />
+    <Content Include="Content\doctor\fonts\metro.ttf" />
+    <Content Include="Content\doctor\fonts\metro.woff" />
+    <Content Include="Content\doctor\fonts\selection.json" />
     <None Include="scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="scripts\doctor\datatable.js" />
     <Content Include="scripts\doctor\fullcalendar.min.js" />
@@ -445,6 +458,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dCareModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\jsonGather.cs" />
     <Compile Include="Models\linkdata.cs" />
     <Compile Include="Models\listWaitView.cs" />
     <Compile Include="Models\patient.cs" />
@@ -499,6 +513,10 @@
     <Content Include="Views\Patient\look1.cshtml" />
     <Content Include="Views\Patient\step4.cshtml" />
     <Content Include="Views\Patient\home.cshtml" />
+    <Content Include="Views\Patient\HIDLogin.cshtml" />
+    <Content Include="Views\Patient\step1_request.cshtml" />
+    <Content Include="Views\Patient\step1_start.cshtml" />
+    <Content Include="Views\Shared\_autoreload.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

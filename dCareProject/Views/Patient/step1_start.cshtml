@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "step1";
+    ViewBag.Title = "step1_start";
     Layout = "~/Views/Shared/_autoreload.cshtml";
-    string patCARD = Session["CARD"].ToString();
-    string patName = Session["NAME"].ToString();
+    string patCARD = "14165C92";
+    string patName = "陳歐太";
 }
 
 <style type="text/css">
@@ -16,11 +16,8 @@
 </style>
 
 <script>
-    function measure() {
-        //$("#measFrame").css("display", "inline");
-        //$("#measTable").css("display", "none");
-        //$("#startMeasure").css("display", "inline");
-        location.href = "step1_start"
+    function linkTo() {
+        location.href("step2");
     }
 
     $(function () {
@@ -70,14 +67,10 @@
             <div class="main" style="font-size:36px;">
                 @patName &nbsp @patCARD 您好，按鈕後開始量測:
                 <hr>
-                <iframe src="step1_request" width="900" height="300" frameborder="0" scrolling="no" id="measFrame" style="display:none"></iframe>
-
+                <iframe src="step1_request" width="900" height="300" frameborder="0" scrolling="no" id="measFrame" style="display:inline"></iframe>
 
                 <div style="text-align:center">
-                    <button class="button success button rounded" onclick=measure() id="startMeasure" style="width:300px;height:100px;font-size:25px">
-                        開始量測
-                    </button>
-                    <button class="button info button rounded" onclick="linkTo()" id="btnNextStep" style="width:300px;height:50px;font-size:25px;display:none">
+                    <button class="button info button rounded" onclick="location.href='step2'" id="btnNextStep" style="width:300px;height:100px;font-size:25px;display:none">
                         下一步
                     </button>
                 </div>

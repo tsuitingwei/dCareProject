@@ -462,4 +462,3 @@ D:\Users\user\Desktop\dCareProject\dCareProject\bin\roslyn\VBCSCompiler.exe.conf
 D:\Users\user\Desktop\dCareProject\dCareProject\bin\dCareProject.dll.config
 D:\Users\user\Desktop\dCareProject\dCareProject\bin\dCareProject.dll
 D:\Users\user\Desktop\dCareProject\dCareProject\bin\dCareProject.pdb
-C:\Users\Rioyclai\Documents\GitHub\dCareProject\dCareProject\obj\Debug\dCareProject.csprojResolveAssemblyReference.cache

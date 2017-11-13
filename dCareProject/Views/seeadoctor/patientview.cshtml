@@ -1,10 +1,8 @@
 ﻿@using dCareProject.Models
 @model patient
-@{ 
-//DodManger Dod = new DodManger();
-//var query = Dod.getDid;
+@{
+    ViewBag.Title = "patientview";
 }
-
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <link href="~/Content/patient/css/metro.css" rel="stylesheet" />
@@ -29,7 +27,7 @@
                 </div>
             </div>
         </div>
-
+       
         <!--bar-end -->
         <br/>
         <p style="color:red"><h2>目前看診號碼 : 70號</h2></p>
@@ -38,8 +36,15 @@
             
             <div class="col-7">
                 <h3>遠端畫面</h3>
-                    <div data-role="preloader" data-type="cycle" data-style="color" id="loading" style="width:480px;height:400px"></div>
-                    <iframe height="400" width="480" style="display:none" scrolling="no" id="frmVedio" src="http://10.211.55.4:86"></iframe>
+                <div data-role="preloader" data-type="cycle" data-style="color" id="loading" style="width:480px;height:400px"></div>
+                <div id="frmVedio" style="display:none">
+                    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="480" height="385">
+                        <param name="movie" value="http://10.211.55.4:86//nchplayer.swf?host=10.2.1.120:1935&scope=BroadCam&streamName=live&bandwidth=1&src=1&autostart=true&redirect=&textOnOver=">
+                        <param name="allowfullscreen" value="true">
+                        <param name="quality" value="high">
+                        <embed src="http://10.211.55.4:86/nchplayer.swf?host=10.211.55.4:1935&scope=BroadCam&streamName=live&bandwidth=1&src=1&autostart=true&redirect=&textOnOver=" width="640" height="500" allowfullscreen="true" quality="high" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer" />
+                    </object>
+                </div>
             </div>
 
             <div class="col-2">
@@ -81,14 +86,6 @@
 
 
     <script>
-        // $("#loading").fadeOut(3000)
-// 		$(document).ready(function(){
-// 			setTimeout(function(){
-// 				$("#loading").css("display","none");
-// 				$("#frmVedio").css("display","inline");
-// 			}, 1400);
-// 		})
-
         function startView(){
             	setTimeout(function(){
 				$("#loading").css("display","none");

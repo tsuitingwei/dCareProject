@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "step1_request";
+    Layout = "~/Views/Shared/_autoreload.cshtml";
+
+    Session["START"] = "True";
+    string patWeight = "----";
+    string patBodyTemp = "----";
+    string patS2PO = "----";
+    string patHeartRate = "----";
+
+    // For weight.
+    if (!string.IsNullOrEmpty(Session["WEIGHT"] as string)) {
+        patWeight = Session["WEIGHT"].ToString();
+        patWeight = "42.6" + "kgs";
+    }
+
+    // For bodytemp.
+    if (!string.IsNullOrEmpty(Session["BODYTEMP"] as string)) {
+        patBodyTemp = Session["BODYTEMP"].ToString() + "°C";
+        //patBodyTemp = "35.6" + "°C";
+    }
+
+    //For s2po
+    if (!string.IsNullOrEmpty(Session["S2PO"] as string)) {
+        patS2PO = Session["S2PO"].ToString() + "%";
+        //patS2PO = "95" + "%";
+    }
+
+    //For heartrate
+    if (!string.IsNullOrEmpty(Session["HEARTRATE"] as string)) {
+        patHeartRate = Session["HEARTRATE"].ToString() + "bpm";
+        //patHeartRate = "83" + "bpm";
+    }
+}
+
+<script>
+    window.onload = init();
+    function init() {
+        setTimeout("location.href=''", 1500);
+    }
+
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        @*@patName &nbsp @patCARD 您好，請依序進行量測:*@
+        <table class="table striped" width="600" align="left" style="font-size:36px">
+            <tr>
+                <th>體重</th>
+                <th>體溫</th>
+                <th>血氧</th>
+                <th>脈搏</th>
+            </tr>
+
+            <tr>
+                <td>
+                    @patWeight
+                </td>
+                <td>
+                    @patBodyTemp
+                </td>
+                <td>
+                    @patS2PO
+                </td>
+                <td>
+                    @patHeartRate
+                </td>
+            </tr>
+        </table>
+
+        @if (patWeight == "----") {
+            <h2 style="font-family:微軟正黑體">開始進行第一步，請站上體重計，進行量測。</h2>}
+        else if (patBodyTemp == "----") {
+                <h2 style="font-family:微軟正黑體">開始進行第二步，請使用體溫計靠近額頭，進行量測。</h2>}
+        else if (patS2PO == "----") {
+                <h2 style="font-family:微軟正黑體">開始進行第三步，請以拇指按壓感測器，進行量測。</h2>}
+        else if (patHeartRate == "----") {
+                <h2 style="font-family:微軟正黑體">開始進行第四步，請以拇指按壓感測器，進行量測。</h2>}
+        else if (patHeartRate != "----") {
+                <h2 style="font-family:微軟正黑體">已完成量測檢查，請按下一步。</h2>}
+
+        @if (patHeartRate == "----") {
+            <div data-role="preloader" data-type="cycle" data-style="dark" style="margin:auto" class="preloader-cycle dark-style" id="measurePreloader">
+                <div class="cycle"></div>
+            </div>
+            <hr>
+        }
+        else {
+            <hr>
+            <input type="hidden" id="measFinish" value="True" />
+        }
+
+
+    </div>
+</div>

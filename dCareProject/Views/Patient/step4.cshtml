@@ -9,6 +9,8 @@
     DocManger dtm = new DocManger();
     var query1 = dtm.getDoc;
 
+    var rID = Session["revID"].ToString();
+
 }
 
 <link href="~/Content/patient/css/bootstrap.css" rel="stylesheet" />
@@ -89,7 +91,7 @@
                     <p name="科別">科別: @query1[0].科別</p>
                     <p id="醫生">醫生: @query1[0].姓名</p>
                     <br>
-                    <a style="color:red;font-size:60px"><b>看診號碼:70號</b></a><br><br />
+                    <a style="color:red;font-size:60px"><b>看診號碼:@rID 號</b></a><br><br />
                    
                     <input type="submit" class="button info button rounded" id="submitbox" name="OkButton" value="完成送出" data-role="popover" data-popover-mode="click" onclick="btnRedirection()"
                            data-popover-position="right" data-popover-text="已完成初步健檢，請等候叫號"

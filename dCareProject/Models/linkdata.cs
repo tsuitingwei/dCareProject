@@ -16,6 +16,5 @@ namespace dCareProject.Models
         public int blood;
         public DateTime time;
         public string record;
-
     }
 }
