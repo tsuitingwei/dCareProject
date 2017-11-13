@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="col-9">
-                    <h3 >病歷資料 <button class="button info block-shadow-info text-shadow" id="CreateRecord">新增本次紀錄</button></h3>
+                    <h3 >病歷資料 <button type="button" class="button info block-shadow-info text-shadow" id="CreateRecord">新增本次紀錄</button></h3>
                     <textarea class="form-control text-area col-md-12" rows="3" name="看診紀錄"></textarea>
                 </div>
             </div>
@@ -154,14 +154,17 @@
 
 
         $("#data").click(function () {
-            var today = new Date();
-            var currentDateTime =
-                today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+            //var today = new Date();
+            //var currentDateTime =
+            //    today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
             if (confirm('確認要歷史紀錄嗎？ 目前記錄會清空') == true){
                 $("textarea").text("看診日期:"
-                    + currentDateTime
+                    + '2017/10/07'
                     + ",看診醫師:魏宏和\n病歷紀錄:\n"
-                    + "Contrary to popular belief, is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H.Rackham.");
+                    + "注意血糖變化，建議可多吃高麗菜、大蒜、菠菜、地瓜、菇類和山藥。\n"
+                    + "1.可以阻擋MMP遺傳因子\n"
+                    + "2.並減緩消化不良的症狀\n"
+                    + "3.保護胃壁和降低血糖的功能可以減少胰臟負擔");
             }
         })
 

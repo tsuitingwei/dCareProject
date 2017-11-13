@@ -44,7 +44,15 @@
                         <td>@row.id</td>
                         <td>@row.name</td>
                         <td>@row.time</td>
-                        <td>@row.checkin</td>
+                        @if (row.checkin != null)
+                        {
+                            <td id="check" style="color:darkblue">已報到</td>
+
+                        }
+                        else
+                        {
+                            <td id="check" style="color:crimson">未報到</td>
+                        }
 
                             <td><button class="button" onclick="get()">詳細資料</button></td>
                             <td class="hide" id="foradress">@row.address</td>

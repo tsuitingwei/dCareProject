@@ -14,9 +14,14 @@ namespace dCareProject.Controllers {
             var query = (from c in db.預約表
                          join o in db.病人 on c.病人ID equals o.ID
 
-
                          //醫生ID:10 魏宏和
-                         where c.醫生ID == 10 && c.登記時間 >= DateTime.Today
+                         where (
+                         c.醫生ID == 10 && 
+                         c.登記時間 >= DateTime.Today &&
+                         c.看診紀錄表ID != null &&
+                         c.看診結果 == null 
+                         )
+
                          select new listWaitView {
                              name = o.姓名,
                              id = c.ID,
@@ -28,10 +33,11 @@ namespace dCareProject.Controllers {
                              birth = o.出生年月日,
                              linkid = c.看診紀錄表ID.Value,
                              checkin = c.報到結果
+
                          }).ToList();
 
             ViewBag.name = query;
-            Session["patName"] = query[0].name;
+            
 
             return View();
         }
@@ -64,13 +70,23 @@ namespace dCareProject.Controllers {
 
         [HttpPost]
         public ActionResult Link(int id, 看診紀錄表 viewdata, 預約表 data) {
+
+            var query = (from o in db.看診紀錄表
+                         join c in db.預約表 on o.ID equals c.看診紀錄表ID
+                         where o.ID == id &&
+                         c.看診結果 == null
+                         select c.ID).First();
+
             看診紀錄表 dbData = db.看診紀錄表.Find(id);
             dbData.看診紀錄 = viewdata.看診紀錄;
+
+            預約表 p = db.預約表.Find(query);
+            p.看診結果 = "看診完成";
 
             var a = new 預約表();
             a.病人ID = 3;
             a.醫生ID = 10;
-            a.登記時間 = data.登記時間;
+            a.登記時間 = DateTime.Today.AddMonths(1);
             db.預約表.Add(a);
 
             db.SaveChanges();
